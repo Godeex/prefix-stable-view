@@ -1,0 +1,35 @@
+# Paper reproduction dependencies — I-01 (prefix-stable streaming view maintenance for agent history)
+#
+# All runtime LLM/embedding calls go to a local Ollama server over HTTP using the Python
+# standard library (urllib), so there is NO torch / transformers / ollama-python / openai /
+# requests dependency for anything that produces an answer or a cost number. The only
+# third-party packages are the scientific stack used by the analysis scripts (plus, for one
+# optional arm, the token-compressor scorer — see the notes at the bottom). Versions below are
+# the ones the reported results were produced with
+# (Python 3.10.20). Looser pins are usually fine for the mechanism probes; the statistics
+# (bootstrap, McNemar, logistic/FDR) are what the exact numbers depend on.
+
+numpy==1.26.4            # every analyze_*.py and run_*.py (session-cluster bootstrap, means)
+scipy==1.15.3            # danger-slice + policy analyzers (exact tests, distributions)
+pandas==2.3.3            # analyze_policy.py (three-arm MTU table shaping)
+statsmodels==0.14.6      # analyze_policy.py (hierarchical logistic / pseudo-R2 / VIF)
+
+# NOT required (documented for clarity):
+#  - torch : only the LLMLingua-2 competitor arm (Sec. "External content rule") needs it, and only
+#    in `compress_llmlingua2.py`, which scores which tokens of the naive window survive. No
+#    gen_*/run_*/analyze_* script on the confirmatory path (trials, scored run files, statistics)
+#    imports torch. See ENVIRONMENT.md sec. 6.
+#  - vllm / sglang : intentionally absent. The cost legs use an Ollama/llama.cpp radix
+#    prefix-cache proxy only (single-stream + a shared-pool concurrency probe), see ENVIRONMENT.md.
+#  - transformers        : used by exactly two scripts — the compressor arm
+#    (`compress_llmlingua2.py`, model id in `CC_MODEL`) and the cache-validity probe
+#    `verify_cache_measure.py`. For the latter, its token-level parts (PB_PARTS containing
+#    any of A = proxy fidelity, B = token-prefix reuse, C = smoke calibration) compare the
+#    server's cached-token accounting against a real tokenizer, and the shipped report
+#    (results/cache_verify_report.json) does contain part C. Rebuilding those parts needs
+#    `pip install transformers` plus access to the proxy tokenizer (PB_PROXY, default
+#    Qwen/Qwen2.5-VL-7B-Instruct). The other two parts in that report, D (eviction probe) and
+#    E (server facts), run on the four pinned packages alone: PB_PARTS=DE reproduces them.
+#    See ENVIRONMENT.md sec. 6 and 7.
+#  - scikit-learn         : not imported by any shipped script.
+#  - pytest               : tests/test_probes.py is plain assert-based (PYTHONHASHSEED=0 python tests/test_probes.py).
