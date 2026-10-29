@@ -1,5 +1,3 @@
-# Artifact README for the ICDE submission
-
 **Paper:** *Maintaining LLM-Agent Conversation History as a Prefix-Stable Streaming Materialized View* 
 
 ## 1. What is in the archive
