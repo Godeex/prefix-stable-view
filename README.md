@@ -143,6 +143,7 @@ the designed cells, the issued calls and the exclusions, and it is regenerated f
 ```
 code/
 ├── README.md              本文件（中英） this file (bilingual)
+├── supplementary.pdf       Supplementary Material for Paper
 ├── requirements.txt       仅科学栈 4 包（无 torch/vllm/ollama-sdk）; only 4 scientific libs
 ├── ENVIRONMENT.md         运行环境：Ollama + 模型 tag + LongBench/MTU 数据 + HF 镜像│
 ├── co/                    M-A 系统最小实现（被实验驱动） minimal ContextOptimizer the experiments exercise
