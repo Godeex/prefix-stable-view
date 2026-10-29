@@ -1,8 +1,5 @@
 # Environment & data setup — I-01 reproduction
 
-> 打包时**实际重跑了哪些脚本、哪些没重跑**（本机缺 numpy/scipy/torch）记录在同目录 `VERIFICATION.md`。
-> Which scripts were actually re-run at packaging time — and which were not, because numpy/scipy/torch
-> were absent — is recorded in `VERIFICATION.md` alongside this file.
 
 Everything runs **locally and offline after the models and two datasets are present**. No cloud
 API keys, no paid services, no new package installs beyond the four scientific libs in
