@@ -1,0 +1,65 @@
+{
+  "n_trials": 552,
+  "n_sessions": 24,
+  "gold_survives": {
+    "comp_open50": 551,
+    "comp_open25": 338,
+    "comp_open20": 39,
+    "comp_open12": 0,
+    "comp_keep25": 552,
+    "comp_keep20": 552
+  },
+  "median_words": {
+    "comp_open50": 515.0,
+    "comp_open25": 258.0,
+    "comp_open20": 206.0,
+    "comp_open12": 124.0,
+    "comp_keep25": 258.0,
+    "comp_keep20": 207.0
+  },
+  "median_words_raw_window": 1030.0,
+  "median_words_prefix_stable": 169.0,
+  "offline_prefix": {
+    "comp_open50": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.0037239000475313214,
+      "turn_pairs": 528
+    },
+    "comp_open25": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.0,
+      "turn_pairs": 528
+    },
+    "comp_open20": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.0017094017094017094,
+      "turn_pairs": 528
+    },
+    "comp_open12": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.002830188679245283,
+      "turn_pairs": 528
+    },
+    "comp_keep25": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.0,
+      "turn_pairs": 528
+    },
+    "comp_keep20": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.001697792869269949,
+      "turn_pairs": 528
+    },
+    "length_only": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.0035881436130690784,
+      "turn_pairs": 528
+    },
+    "prefix_stable": {
+      "full_prefix_hit_rate": 0.0,
+      "median_lcp_share": 0.24191557442141395,
+      "turn_pairs": 528
+    }
+  },
+  "rerun_trials_checked": 25
+}

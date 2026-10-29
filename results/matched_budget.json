@@ -1,0 +1,153 @@
+{
+  "purpose": "keep-rate for the budget-matched competitor arm",
+  "n_trials": 552,
+  "view_budget_B": {
+    "arm": "prefix_stable",
+    "mean": 445.4764492753623,
+    "median": 443.0,
+    "p25": 382.0,
+    "p75": 505.5,
+    "n_calls": 552
+  },
+  "naive_window": {
+    "mean_B": 1574.9438405797102,
+    "tokens_per_word_mean": 1.5338365220583592
+  },
+  "raw_history_words": {
+    "median": 1030.0,
+    "mean": 1018.2952898550725
+  },
+  "estimator_naive_proxy": {
+    "target_rate": 0.27,
+    "pred_mean_B": 447.7878174463147,
+    "gap_vs_view": 2.3113681709523917,
+    "why_rejected": "assumes pruned text has the window's tokens-per-kept-word; the pruner keeps token-dense words"
+  },
+  "estimator_measured_fit": {
+    "fit_points": [
+      {
+        "arm": "comp_open12",
+        "calls": 552,
+        "mean_kept_words": 122.21014492753623,
+        "mean_measured_B": 291.67028985507244,
+        "tokens_per_kept_word": 2.5492441262753496
+      },
+      {
+        "arm": "comp_open20",
+        "calls": 552,
+        "mean_kept_words": 203.66485507246378,
+        "mean_measured_B": 434.2173913043478,
+        "tokens_per_kept_word": 2.2190838154193484
+      },
+      {
+        "arm": "comp_open25",
+        "calls": 552,
+        "mean_kept_words": 254.56884057971016,
+        "mean_measured_B": 525.8731884057971,
+        "tokens_per_kept_word": 2.137646402262967
+      },
+      {
+        "arm": "comp_open50",
+        "calls": 552,
+        "mean_kept_words": 509.1322463768116,
+        "mean_measured_B": 987.5978260869565,
+        "tokens_per_kept_word": 1.9903250507590216
+      }
+    ],
+    "intercept": 68.79480901232753,
+    "slope_tokens_per_kept_word": 1.8027005944021248,
+    "max_abs_residual_tokens": 2.567179939905543,
+    "target_rate": 0.21,
+    "pred_mean_B": 454.28534916310076,
+    "gap_vs_view": 8.808899887738448
+  },
+  "served_matched_arm": {
+    "arm": "comp_open20",
+    "rate": 0.2,
+    "measured_mean_B": 434.2173913043478,
+    "gap_vs_view": -11.2590579710145,
+    "calls": 552,
+    "fit_rate_on_complete_leg": 0.21,
+    "fit_pick_was_served": false,
+    "how_matched_is_decided": "by the measured prompt tokens of the served arms and the paired bootstrap CI in analyze_prefix_comp.py; the fit pick above is shown only to keep a disagreement visible"
+  },
+  "arms_served_by_this_roster": [
+    "comp_open12",
+    "comp_open20",
+    "comp_open25",
+    "comp_open50"
+  ],
+  "nearest_rates_on_the_fit": [
+    {
+      "rate": 0.21,
+      "pred_mean_B": 454.28534916310076
+    },
+    {
+      "rate": 0.2,
+      "pred_mean_B": 435.94156431028057
+    },
+    {
+      "rate": 0.22,
+      "pred_mean_B": 472.655260111492
+    },
+    {
+      "rate": 0.19,
+      "pred_mean_B": 417.6010452194068
+    },
+    {
+      "rate": 0.23,
+      "pred_mean_B": 491.0023107262585
+    }
+  ],
+  "arms_and_predictions": {
+    "comp_keep20": {
+      "median_words": 207.0,
+      "pred_mean_B_naive_proxy": 339.8892814822074,
+      "pred_mean_B_measured_fit": 437.61690018877385,
+      "measured_mean_B": null,
+      "gold_survives": 552
+    },
+    "comp_keep25": {
+      "median_words": 258.0,
+      "pred_mean_B_naive_proxy": 417.13684545543634,
+      "pred_mean_B_measured_fit": 528.4050822981562,
+      "measured_mean_B": null,
+      "gold_survives": 552
+    },
+    "comp_open12": {
+      "median_words": 124.0,
+      "pred_mean_B_naive_proxy": 213.52560453089228,
+      "pred_mean_B_measured_fit": 289.10310991516695,
+      "measured_mean_B": 291.67028985507244,
+      "gold_survives": 0
+    },
+    "comp_open20": {
+      "median_words": 206.0,
+      "pred_mean_B_naive_proxy": 338.46381384485977,
+      "pred_mean_B_measured_fit": 435.94156431028057,
+      "measured_mean_B": 434.2173913043478,
+      "gold_survives": 39
+    },
+    "comp_open25": {
+      "median_words": 258.0,
+      "pred_mean_B_naive_proxy": 416.5422059342036,
+      "pred_mean_B_measured_fit": 527.7062092416309,
+      "measured_mean_B": 525.8731884057971,
+      "gold_survives": 338
+    },
+    "comp_open50": {
+      "median_words": 515.0,
+      "pred_mean_B_naive_proxy": 807.0008549253605,
+      "pred_mean_B_measured_fit": 986.607812185095,
+      "measured_mean_B": 987.5978260869565,
+      "gold_survives": 551
+    }
+  },
+  "honest_boundary": "the rate is CHOSEN from this fit; the budget the arm actually costs is measured from the served leg (analyze_prefix_comp.py). The fit is on partial serving of the same leg, which is a disclosed post-hoc element of the design, not a blind prediction.",
+  "inputs": [
+    "prefix_cost_trials.jsonl",
+    "prefix_cost_scored_qwen3_14b_t0.0.jsonl",
+    "prefix_comp_trials.jsonl",
+    "prefix_comp_scored_qwen3_14b_t0.0.jsonl"
+  ]
+}

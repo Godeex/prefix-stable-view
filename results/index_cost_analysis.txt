@@ -1,0 +1,33 @@
+== index cost  model=qwen3:14b temp=0.0 pairs=460 sessions=20 turns=7..29 ==
+arm               acc mean_prompt mean_cached mean_recomp   hit% prefill_ms
+prefix_stable   1.000         453         202       250.8  44.6%      212.1
+index_I2        1.000         481         202       278.5  42.1%      240.1
+index_I8        1.000         545         202       342.6  37.1%      278.2
+index_I24       1.000         650         203       446.6  31.3%      329.4
+length_only     1.000        1591          25      1566.8   1.5%     1039.7
+
+(i) matched-quality premise: {'prefix_stable': 1.0, 'index_I2': 1.0, 'index_I8': 1.0, 'index_I24': 1.0, 'length_only': 1.0} -> OK
+
+== (ii) session-cluster bootstrap of mean PAIRED recompute difference (tokens) ==
+  D(index_I2  - prefix_stable) =     27.7 95%CI[27.1,28.2] P(<=0)=0 -> SIGNIFICANT   [n=460 pairs, 20 sessions]
+  D(index_I8  - prefix_stable) =     91.8 95%CI[89.5,93.9] P(<=0)=0 -> SIGNIFICANT   [n=460 pairs, 20 sessions]
+  D(index_I24 - prefix_stable) =    195.7 95%CI[190.3,200.7] P(<=0)=0 -> SIGNIFICANT   [n=460 pairs, 20 sessions]
+  D(index_I2  - length_only  ) =  -1288.3 95%CI[-1304.5,-1269.6] P(<=0)=1 -> (reverse)   [n=460 pairs, 20 sessions]
+  D(index_I8  - length_only  ) =  -1224.2 95%CI[-1240.2,-1206.0] P(<=0)=1 -> (reverse)   [n=460 pairs, 20 sessions]
+  D(index_I24 - length_only  ) =  -1120.2 95%CI[-1135.6,-1102.2] P(<=0)=1 -> (reverse)   [n=460 pairs, 20 sessions]
+
+== (iii) slope of the premium on I (tokens per index row) ==
+  intercept    +21.14 se  0.18 [+20.79,+21.49] p=9.42e-29
+  slope_I       +7.40 se  0.11 [+7.19,+7.62] p=3.55e-24
+  rows=1380 (3 index sizes x 460 session-turns), clustered on 20 sessions
+
+== (iv) corroborating prefill latency (ms), premium vs baseline ==
+  D(index_I2  - prefix_stable) =    28.0 ms 95%CI[4.2,42.0] P(<=0)=0.015
+  D(index_I8  - prefix_stable) =    66.2 ms 95%CI[44.0,79.7] P(<=0)=0
+  D(index_I24 - prefix_stable) =   117.4 ms 95%CI[98.5,129.3] P(<=0)=0
+
+recompute: index_I2 = 278.5 tok/turn vs prefix_stable 250.8 (x1.11) and length_only 1566.8 (5.63x cheaper than naive)
+
+recompute: index_I8 = 342.6 tok/turn vs prefix_stable 250.8 (x1.37) and length_only 1566.8 (4.57x cheaper than naive)
+
+recompute: index_I24 = 446.6 tok/turn vs prefix_stable 250.8 (x1.78) and length_only 1566.8 (3.51x cheaper than naive)

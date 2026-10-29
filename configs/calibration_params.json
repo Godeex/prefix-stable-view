@@ -1,0 +1,11 @@
+{
+  "schema": "light.ma.calibration.v1",
+  "fit_scope": "pilot",
+  "provisional": true,
+  "as_of": "2026-09-23",
+  "model_family": "qwen3:8b,llama3:latest,qwen2.5:7b",
+  "params": {"beta0": -2.4, "beta1": 5.0, "beta2": 0.4, "tau_near": 0.55},
+  "form": "p(contamination)=sigmoid(beta0 + beta1*nsim + beta2*K)",
+  "source": "stage5-plan/pilot/external_validity.md (matched-token, VIF~1); pilot near/far contrast",
+  "note": "PROVISIONAL prior only (ADR-0004). beta0/beta1/beta2/tau_near here are illustrative logistic anchors consistent with the pilot sign and dose-response; they MUST be refit from natural-load data in stage6 before any cross-family generality claim (soft points (i)(ii)). Consumers must treat fit_scope=pilot outputs as provisional. NO token/length term by design (orthogonal to length, M-B VIF~1)."
+}

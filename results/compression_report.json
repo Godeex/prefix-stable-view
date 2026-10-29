@@ -1,0 +1,59 @@
+{
+  "scorer": "microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank",
+  "dev": "cpu",
+  "n_trials": 552,
+  "rates": [
+    0.5,
+    0.25,
+    0.2,
+    0.12
+  ],
+  "elapsed_s": 128.5,
+  "torch": "2.12.0+cu130",
+  "transformers": "5.9.0",
+  "median_stable_words": 169.0,
+  "arms": {
+    "comp_open50": {
+      "gold_survives": 551,
+      "gold_survival_rate": 0.9982,
+      "median_words": 515.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    },
+    "comp_open25": {
+      "gold_survives": 338,
+      "gold_survival_rate": 0.6123,
+      "median_words": 258.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    },
+    "comp_open20": {
+      "gold_survives": 39,
+      "gold_survival_rate": 0.0707,
+      "median_words": 206.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    },
+    "comp_open12": {
+      "gold_survives": 0,
+      "gold_survival_rate": 0.0,
+      "median_words": 124.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    },
+    "comp_keep25": {
+      "gold_survives": 552,
+      "gold_survival_rate": 1.0,
+      "median_words": 258.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    },
+    "comp_keep20": {
+      "gold_survives": 552,
+      "gold_survival_rate": 1.0,
+      "median_words": 207.0,
+      "median_words_raw": 1030.0,
+      "median_words_stable_arm": 169.0
+    }
+  }
+}

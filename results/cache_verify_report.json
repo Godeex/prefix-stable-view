@@ -1,0 +1,90 @@
+{
+ "meta": {
+  "model": "qwen3:14b",
+  "num_ctx": 8192,
+  "proxy_tokenizer": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "ran_at": "2026-09-28T11:52:42+0800",
+  "parts": [
+   "C",
+   "D",
+   "E"
+  ]
+ },
+ "C_smoke_calibration": [
+  {
+   "k_proxy": 1670,
+   "cached": 1679,
+   "prompt": 1698,
+   "recompute": 19,
+   "warm_prompt": 1697,
+   "ratio": 1.0053892215568863
+  },
+  {
+   "k_proxy": 1678,
+   "cached": 1688,
+   "prompt": 1707,
+   "recompute": 19,
+   "warm_prompt": 1706,
+   "ratio": 1.0059594755661503
+  },
+  {
+   "k_proxy": 1710,
+   "cached": 1720,
+   "prompt": 1739,
+   "recompute": 19,
+   "warm_prompt": 1738,
+   "ratio": 1.0058479532163742
+  },
+  {
+   "k_proxy": 1831,
+   "cached": 1841,
+   "prompt": 1860,
+   "recompute": 19,
+   "warm_prompt": 1859,
+   "ratio": 1.0054614964500272
+  }
+ ],
+ "D_eviction_probe": [
+  {
+   "gap": null,
+   "cached": 17,
+   "prompt": 1694
+  },
+  {
+   "gap": 0,
+   "cached": 1693,
+   "prompt": 1694,
+   "recompute": 1
+  },
+  {
+   "gap": 4,
+   "cached": 1693,
+   "prompt": 1694,
+   "recompute": 1
+  },
+  {
+   "gap": 16,
+   "cached": 1693,
+   "prompt": 1694,
+   "recompute": 1
+  },
+  {
+   "gap": 40,
+   "cached": 1693,
+   "prompt": 1694,
+   "recompute": 1
+  }
+ ],
+ "E_server_facts": {
+  "ollama_version": "ollama version is 0.33.3",
+  "ggml_string_count": 389,
+  "llama_cpp_version": "unknown",
+  "ollama_show": [
+   "parameters          14.8B",
+   "context length      40960",
+   "quantization        Q4_K_M"
+  ],
+  "gpu": "NVIDIA GeForce RTX 4090, 46833 MiB, 49140 MiB, 535.230.02\nNVIDIA GeForce RTX 4090, 44060 MiB, 49140 MiB, 535.230.02\nNVIDIA L40, 10058 MiB, 49140 MiB, 535.230.02\nNVIDIA GeForce RTX 4090, 24 MiB, 49140 MiB, 535.230.02",
+  "pinned": "num_ctx=8192, seed=1234, temperature=0, num_predict<=40; keep_alive and cache TTL NOT set by the client (server defaults apply)"
+ }
+}

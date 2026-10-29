@@ -1,0 +1,108 @@
+
+#### llama3:latest: index/index_nok 1440 + plain(C7) 720 = 2160 calls, 120 sessions
+
+== llama3:latest: shared-key arm x head length x gold position ==
+arm          H slot       n               correct         mentions_gold          substitution  other
+plain        6 first    120   [0.375 0.294,0.464]   [0.967 0.917,0.987]   [0.000 0.000,0.031]  0.033
+plain        6 middle   120   [0.008 0.001,0.046]   [0.842 0.766,0.896]   [0.158 0.104,0.234]  0.000
+plain        6 last     120   [0.000 0.000,0.031]   [0.767 0.683,0.833]   [0.233 0.167,0.317]  0.000
+plain       24 first    120   [0.475 0.388,0.564]   [0.908 0.843,0.948]   [0.000 0.000,0.031]  0.092
+plain       24 middle   120   [0.000 0.000,0.031]   [0.675 0.587,0.752]   [0.325 0.248,0.413]  0.000
+plain       24 last     120   [0.000 0.000,0.031]   [0.767 0.683,0.833]   [0.233 0.167,0.317]  0.000
+index        6 first    120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index        6 middle   120   [0.833 0.757,0.889]   [0.842 0.766,0.896]   [0.158 0.104,0.234]  0.000
+index        6 last     120   [0.592 0.502,0.675]   [0.608 0.519,0.691]   [0.392 0.309,0.481]  0.000
+index       24 first    120   [0.983 0.941,0.995]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+index       24 middle   120   [0.625 0.536,0.706]   [0.717 0.630,0.790]   [0.275 0.203,0.361]  0.008
+index       24 last     120   [0.608 0.519,0.691]   [0.733 0.648,0.804]   [0.242 0.174,0.326]  0.025
+index_nok    6 first    120   [0.717 0.630,0.790]   [0.733 0.648,0.804]   [0.258 0.188,0.343]  0.008
+index_nok    6 middle   120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [1.000 0.969,1.000]  0.000
+index_nok    6 last     120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [1.000 0.969,1.000]  0.000
+index_nok   24 first    120   [0.600 0.511,0.683]   [0.600 0.511,0.683]   [0.292 0.218,0.378]  0.108
+index_nok   24 middle   120   [0.000 0.000,0.031]   [0.008 0.001,0.046]   [0.983 0.941,0.995]  0.008
+index_nok   24 last     120   [0.000 0.000,0.031]   [0.025 0.009,0.071]   [0.958 0.906,0.982]  0.017
+
+== pooled over the grid (levels, mean of cell rates) ==
+  plain      correct 0.143  substitution 0.158
+  index      correct 0.774  substitution 0.178
+  index_nok  correct 0.219  substitution 0.749
+
+== arm contrasts at matched content and matched gold position ==
+  H=6   first   index      vs plain: correct RD +0.625 CI[+0.542,+0.708] b/c=75/0 p=5.29e-23 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   index_nok  vs plain: correct RD +0.342 CI[+0.233,+0.450] b/c=49/8 p=2.72e-08 | subst +0.258 CI[+0.183,+0.342] p=9.31e-10
+  H=6   first   VALUE-ONLY  index vs index_nok: correct RD +0.283 CI[+0.200,+0.367] b/c=34/0 p=1.16e-10
+  H=6   middle  index      vs plain: correct RD +0.825 CI[+0.758,+0.892] b/c=99/0 p=3.16e-30 | subst +0.000 CI[-0.092,+0.092] p=1
+  H=6   middle  index_nok  vs plain: correct RD -0.008 CI[-0.025,+0.000] b/c=0/1 p=1 | subst +0.842 CI[+0.775,+0.908] p=7.89e-31
+  H=6   middle  VALUE-ONLY  index vs index_nok: correct RD +0.833 CI[+0.767,+0.900] b/c=100/0 p=1.58e-30
+  H=6   last    index      vs plain: correct RD +0.592 CI[+0.500,+0.675] b/c=71/0 p=8.47e-22 | subst +0.158 CI[+0.050,+0.267] p=0.00661
+  H=6   last    index_nok  vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.767 CI[+0.692,+0.842] p=4.04e-28
+  H=6   last    VALUE-ONLY  index vs index_nok: correct RD +0.592 CI[+0.500,+0.675] b/c=71/0 p=8.47e-22
+  H=24  first   index      vs plain: correct RD +0.508 CI[+0.417,+0.600] b/c=62/1 p=1.39e-17 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   index_nok  vs plain: correct RD +0.125 CI[+0.008,+0.242] b/c=35/20 p=0.0581 | subst +0.292 CI[+0.217,+0.375] p=5.82e-11
+  H=24  first   VALUE-ONLY  index vs index_nok: correct RD +0.383 CI[+0.292,+0.475] b/c=47/1 p=3.48e-13
+  H=24  middle  index      vs plain: correct RD +0.625 CI[+0.542,+0.708] b/c=75/0 p=5.29e-23 | subst -0.050 CI[-0.158,+0.067] p=0.48
+  H=24  middle  index_nok  vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.658 CI[+0.567,+0.742] p=3.31e-24
+  H=24  middle  VALUE-ONLY  index vs index_nok: correct RD +0.625 CI[+0.542,+0.708] b/c=75/0 p=5.29e-23
+  H=24  last    index      vs plain: correct RD +0.608 CI[+0.517,+0.692] b/c=73/0 p=2.12e-22 | subst +0.008 CI[-0.100,+0.117] p=1
+  H=24  last    index_nok  vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.725 CI[+0.633,+0.808] p=2.91e-25
+  H=24  last    VALUE-ONLY  index vs index_nok: correct RD +0.608 CI[+0.517,+0.692] b/c=73/0 p=2.12e-22
+
+== pre-declared reading ==
+  Q-A index repairs shared-key collapse at middle: mean RD +0.725 -> YES (gain survives real hazard)
+  Q-A index repairs shared-key collapse at last: mean RD +0.600 -> YES (gain survives real hazard)
+  Q-B stale index drives substitution vs plain: mean subst RD +0.590 -> YES (model reads INDEX over the raw stale line)
+  Q-C block VALUE carries it (index vs index_nok): mean correct RD +0.554
+
+#### qwen3:14b: index/index_nok 1440 + plain(C7) 720 = 2160 calls, 120 sessions
+
+== qwen3:14b: shared-key arm x head length x gold position ==
+arm          H slot       n               correct         mentions_gold          substitution  other
+plain        6 first    120   [0.942 0.884,0.971]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+plain        6 middle   120   [0.042 0.018,0.094]   [0.133 0.084,0.206]   [0.550 0.461,0.636]  0.317
+plain        6 last     120   [0.108 0.064,0.177]   [0.233 0.167,0.317]   [0.658 0.570,0.737]  0.108
+plain       24 first    120   [0.933 0.874,0.966]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+plain       24 middle   120   [0.008 0.001,0.046]   [0.158 0.104,0.234]   [0.742 0.657,0.812]  0.100
+plain       24 last     120   [0.025 0.009,0.071]   [0.175 0.117,0.253]   [0.742 0.657,0.812]  0.083
+index        6 first    120   [0.958 0.906,0.982]   [0.958 0.906,0.982]   [0.000 0.000,0.031]  0.042
+index        6 middle   120   [0.475 0.388,0.564]   [0.475 0.388,0.564]   [0.000 0.000,0.031]  0.525
+index        6 last     120   [0.633 0.544,0.714]   [0.633 0.544,0.714]   [0.000 0.000,0.031]  0.367
+index       24 first    120   [0.967 0.917,0.987]   [0.967 0.917,0.987]   [0.000 0.000,0.031]  0.033
+index       24 middle   120   [0.467 0.380,0.556]   [0.467 0.380,0.556]   [0.008 0.001,0.046]  0.525
+index       24 last     120   [0.525 0.436,0.612]   [0.525 0.436,0.612]   [0.017 0.005,0.059]  0.458
+index_nok    6 first    120   [0.058 0.029,0.116]   [0.058 0.029,0.116]   [0.817 0.738,0.876]  0.125
+index_nok    6 middle   120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [0.508 0.420,0.596]  0.492
+index_nok    6 last     120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [0.642 0.553,0.722]  0.358
+index_nok   24 first    120   [0.175 0.117,0.253]   [0.175 0.117,0.253]   [0.683 0.596,0.760]  0.142
+index_nok   24 middle   120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [0.667 0.578,0.745]  0.333
+index_nok   24 last     120   [0.000 0.000,0.031]   [0.000 0.000,0.031]   [0.675 0.587,0.752]  0.325
+
+== pooled over the grid (levels, mean of cell rates) ==
+  plain      correct 0.343  substitution 0.449
+  index      correct 0.671  substitution 0.004
+  index_nok  correct 0.039  substitution 0.665
+
+== arm contrasts at matched content and matched gold position ==
+  H=6   first   index      vs plain: correct RD +0.017 CI[-0.033,+0.067] b/c=6/4 p=0.754 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   index_nok  vs plain: correct RD -0.883 CI[-0.942,-0.825] b/c=0/106 p=2.47e-32 | subst +0.817 CI[+0.742,+0.883] p=6.31e-30
+  H=6   first   VALUE-ONLY  index vs index_nok: correct RD +0.900 CI[+0.842,+0.950] b/c=108/0 p=6.16e-33
+  H=6   middle  index      vs plain: correct RD +0.433 CI[+0.333,+0.533] b/c=57/5 p=3.07e-12 | subst -0.550 CI[-0.642,-0.458] p=2.71e-20
+  H=6   middle  index_nok  vs plain: correct RD -0.042 CI[-0.083,-0.008] b/c=0/5 p=0.0625 | subst -0.042 CI[-0.167,+0.075] p=0.597
+  H=6   middle  VALUE-ONLY  index vs index_nok: correct RD +0.475 CI[+0.383,+0.567] b/c=57/0 p=1.39e-17
+  H=6   last    index      vs plain: correct RD +0.525 CI[+0.425,+0.625] b/c=67/4 p=8.74e-16 | subst -0.658 CI[-0.742,-0.575] p=3.31e-24
+  H=6   last    index_nok  vs plain: correct RD -0.108 CI[-0.167,-0.058] b/c=0/13 p=0.000244 | subst -0.017 CI[-0.133,+0.100] p=0.892
+  H=6   last    VALUE-ONLY  index vs index_nok: correct RD +0.633 CI[+0.542,+0.717] b/c=76/0 p=2.65e-23
+  H=24  first   index      vs plain: correct RD +0.033 CI[-0.025,+0.092] b/c=8/4 p=0.388 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   index_nok  vs plain: correct RD -0.758 CI[-0.833,-0.675] b/c=1/92 p=1.9e-26 | subst +0.683 CI[+0.600,+0.767] p=4.14e-25
+  H=24  first   VALUE-ONLY  index vs index_nok: correct RD +0.792 CI[+0.717,+0.867] b/c=96/1 p=1.24e-27
+  H=24  middle  index      vs plain: correct RD +0.458 CI[+0.367,+0.550] b/c=56/1 p=8.05e-16 | subst -0.733 CI[-0.808,-0.650] p=6.46e-27
+  H=24  middle  index_nok  vs plain: correct RD -0.008 CI[-0.025,+0.000] b/c=0/1 p=1 | subst -0.075 CI[-0.192,+0.042] p=0.272
+  H=24  middle  VALUE-ONLY  index vs index_nok: correct RD +0.467 CI[+0.375,+0.558] b/c=56/0 p=2.78e-17
+  H=24  last    index      vs plain: correct RD +0.500 CI[+0.400,+0.600] b/c=63/3 p=1.3e-15 | subst -0.725 CI[-0.808,-0.642] p=2.91e-25
+  H=24  last    index_nok  vs plain: correct RD -0.025 CI[-0.058,+0.000] b/c=0/3 p=0.25 | subst -0.067 CI[-0.183,+0.050] p=0.322
+  H=24  last    VALUE-ONLY  index vs index_nok: correct RD +0.525 CI[+0.433,+0.617] b/c=63/0 p=2.17e-19
+
+== pre-declared reading ==
+  Q-A index repairs shared-key collapse at middle: mean RD +0.446 -> YES (gain survives real hazard)
+  Q-A index repairs shared-key collapse at last: mean RD +0.512 -> YES (gain survives real hazard)
+  Q-B stale index drives substitution vs plain: mean subst RD +0.217 -> YES (model reads INDEX over the raw stale line)
+  Q-C block VALUE carries it (index vs index_nok): mean correct RD +0.632

@@ -1,0 +1,24 @@
+== mode=all; stratum set: all served models (primary); danger slice: LO kept a near-twin (max_sim>=0.60) ==
+
+== per-stratum slice size and discordants ==
+  gemma2:2b_t0.0             b=9 c=7
+  gemma2:2b_t0.6             b=9 c=8
+  llama3:latest_t0.0         b=7 c=3
+  llama3:latest_t0.6         b=7 c=3
+  mistral:latest_t0.0        b=10 c=3
+  mistral:latest_t0.6        b=9 c=2
+  qwen2.5:14b_t0.0           b=6 c=0
+  qwen2.5:14b_t0.6           b=6 c=2
+  qwen3.8:27b_t0.0           b=6 c=3
+  qwen3.8:27b_t0.5           b=7 c=3
+  qwen3:14b_t0.0             b=7 c=2
+  qwen3:14b_t0.6             b=7 c=3
+  qwen3:8b_t0.0              b=2 c=2
+  qwen3:8b_t0.7              b=2 c=2
+
+(1) naive pooled McNemar: B=94 C=43 p=1.568e-05  [ANTI-CONSERVATIVE: ignores within-question + within-model correlation]
+(2) Mantel-Haenszel over 14 all (model,temp) cells: sum(b-c)=51 sum(b+c)=137 T=18.99 chi2_1 p=1.317e-05
+(2b) Mantel-Haenszel over 7 independent temp0 model strata: sum(b-c)=27 sum(b+c)=67 T=10.88 chi2_1 p=0.0009718
+(3) QUESTION-cluster bootstrap (47 questions, 652 paired rows, all served models (primary)):
+    D_hat (LO-MA substitution diff) = 0.0782  95% CI [0.0031,0.1631]  P(D<=0)=0.0205  -> SIGNIFICANT (CI>0)
+(4) design precision: per-question SD=0.2777 SE=0.0405 1.96SE=0.0794 80%-power MDE=0.1135 n to put the lower bound over 0.03=127 n for MDE80=0.03=672

@@ -1,0 +1,19 @@
+== stratum set: subgroup: >=7B checkpoints with b>c at t0 (sensitivity); danger slice: LO kept a near-twin (max_sim>=0.60) ==
+
+== per-stratum slice size and discordants ==
+  llama3:latest_t0.0         n= 47 b=7 c=3
+  llama3:latest_t0.6         n= 47 b=7 c=3
+  mistral:latest_t0.0        n= 47 b=10 c=3
+  mistral:latest_t0.6        n= 47 b=9 c=2
+  qwen2.5:14b_t0.0           n= 47 b=6 c=0
+  qwen2.5:14b_t0.6           n= 47 b=6 c=2
+  qwen3.8:27b_t0.0           n= 44 b=6 c=3
+  qwen3.8:27b_t0.5           n= 44 b=7 c=3
+  qwen3:14b_t0.0             n= 47 b=7 c=2
+  qwen3:14b_t0.6             n= 47 b=7 c=3
+
+(1) naive pooled McNemar: B=72 C=24 p=9.699e-07  [ANTI-CONSERVATIVE: ignores within-question + within-model correlation]
+(2) Mantel-Haenszel over all 10 (model,temp) cells: sum(b-c)=48 sum(b+c)=96 T=24.00 chi2_1 p=9.634e-07
+(2b) Mantel-Haenszel over 5 independent temp0 model strata: sum(b-c)=25 sum(b+c)=47 T=13.30 chi2_1 p=0.0002657
+(3) QUESTION-cluster bootstrap (47 questions, 464 paired rows, subgroup: >=7B checkpoints with b>c at t0 (sensitivity)):
+    D_hat (LO-MA substitution diff) = 0.1034  95% CI [0.0261,0.1922]  P(D<=0)=0.004  -> SIGNIFICANT (CI>0)

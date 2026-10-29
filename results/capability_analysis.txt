@@ -1,0 +1,24 @@
+== per-model danger-slice benefit, temperature-0 strata only (independent models; slice = LO kept a near-twin, max_sim>=0.60) ==
+  gemma2:2b           2B n= 47 b/c=9/7  D=+0.0426  95%CI [-0.1277,+0.2128]  SE=0.0868
+  mistral:latest      7B n= 47 b/c=10/3  D=+0.1489  95%CI [+0.0000,+0.2979]  SE=0.0760
+  llama3:latest       8B n= 47 b/c=7/3  D=+0.0851  95%CI [-0.0426,+0.2128]  SE=0.0651
+  qwen3:8b            8B n= 47 b/c=2/2  D=+0.0000  95%CI [-0.0851,+0.0851]  SE=0.0434
+  qwen2.5:14b        14B n= 47 b/c=6/0  D=+0.1277  95%CI [+0.0426,+0.2340]  SE=0.0488
+  qwen3:14b          14B n= 47 b/c=7/2  D=+0.1064  95%CI [+0.0000,+0.2340]  SE=0.0597
+  qwen3.8:27b        27B n= 44 b/c=6/3  D=+0.0682  95%CI [-0.0682,+0.2045]  SE=0.0696
+
+(2) heterogeneity of the 7 model-level D's: pooled D=+0.0753, Cochran Q=5.54 on 6 df, p=0.4764, I^2=0.0%
+    spread of D: min=+0.0000 max=+0.1489 range=0.1489
+
+(3) Spearman rho(D, checkpoint size class), n=7 models: rho=+0.109, exact two-sided permutation p=0.822 (all 5040 rank assignments; smallest attainable two-sided p = 0.00040)
+    leave-one-model-out rho range: [-0.294,+0.500] (drop -> rho: gemma2_2b:-0.29, mistral_latest:+0.50, llama3_latest:+0.12, qwen3_8b:+0.06, qwen2.5_14b:+0.06, qwen3_14b:+0.06, qwen3.8_27b:+0.24)
+    size-monotonicity violations: 2 of 6 adjacent pairs; e.g. 0.149 -> 0.000; 0.128 -> 0.068
+
+(4) same-model temperature pairs: shared question set but separate calls (identical outcome flags counted over the common slice)
+    gemma2:2b       t0.0 vs t0.6: n=47/47 common=47 identical_pairs=42/47  runs[t0.0/s1234, t0.6/s777]
+    mistral:latest  t0.0 vs t0.6: n=47/47 common=47 identical_pairs=43/47  runs[t0.0/s1234, t0.6/s777]
+    llama3:latest   t0.0 vs t0.6: n=47/47 common=47 identical_pairs=41/47  runs[t0.0/s1234, t0.6/s777]
+    qwen3:8b        t0.0 vs t0.7: n=47/47 common=47 identical_pairs=47/47  runs[t0.0/s1234, t0.7/s1234]
+    qwen2.5:14b     t0.0 vs t0.6: n=47/47 common=47 identical_pairs=45/47  runs[t0.0/s1234, t0.6/s777]
+    qwen3:14b       t0.0 vs t0.6: n=47/47 common=47 identical_pairs=46/47  runs[t0.0/s1234, t0.6/s777]
+    qwen3.8:27b     t0.0 vs t0.5: n=44/44 common=44 identical_pairs=43/44  runs[t0.0/s1234, t0.5/s1234]

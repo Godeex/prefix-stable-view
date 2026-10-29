@@ -1,0 +1,112 @@
+run files: ['position_scored_llama3_latest.jsonl', 'position_scored_qwen3_14b.jsonl']
+
+### llama3:latest: 720 calls, 120 sessions, err-answers 0
+
+== llama3:latest: position of the gold line in the STATE head (one competing near-twin value in context in every cell) ==
+  H slot    gold@   chars    tok    n               correct         mentions_gold          substitution  other
+  6 first        0   1915  493.6  120   [0.375 0.294,0.464]   [0.967 0.917,0.987]   [0.000 0.000,0.031]  0.033
+  6 middle       3   1915  493.6  120   [0.008 0.001,0.046]   [0.842 0.766,0.896]   [0.158 0.104,0.234]  0.000
+  6 last         5   1915  493.6  120   [0.000 0.000,0.031]   [0.767 0.683,0.833]   [0.233 0.167,0.317]  0.000
+ 24 first        0   4794 1191.3  120   [0.475 0.388,0.564]   [0.908 0.843,0.948]   [0.000 0.000,0.031]  0.092
+ 24 middle      12   4794 1191.3  120   [0.000 0.000,0.031]   [0.675 0.587,0.752]   [0.325 0.248,0.413]  0.000
+ 24 last        23   4794 1191.3  120   [0.000 0.000,0.031]   [0.767 0.683,0.833]   [0.233 0.167,0.317]  0.000
+  prompt size (not a manipulated axis): H=6: 493.6 tok mean [378, 677], 1915 chars mean [1541, 2770]  H=24: 1191.3 tok mean [953, 1567], 4794 chars mean [3953, 6447]  
+  char spread across the three slots within a (session, H) group: max 0 over 240 groups (permutation of one line: expected 0)
+  H=6  middle - first        | correct -0.367 CI[-0.450,-0.283] b/c=0/44 p=1.14e-13 | mention -0.125 CI[-0.192,-0.058] b/c=2/17 p=0.000729 | substit +0.158 CI[+0.092,+0.225] b/c=19/0 p=3.81e-06
+  H=6  middle - last         | correct +0.008 CI[+0.000,+0.025] b/c=1/0 p=1 | mention +0.075 CI[+0.000,+0.150] b/c=16/7 p=0.0931 | substit -0.075 CI[-0.150,+0.000] b/c=7/16 p=0.0931
+  H=24 middle - first        | correct -0.475 CI[-0.567,-0.383] b/c=0/57 p=1.39e-17 | mention -0.233 CI[-0.333,-0.133] b/c=7/35 p=1.51e-05 | substit +0.325 CI[+0.242,+0.408] b/c=39/0 p=3.64e-12
+  H=24 middle - last         | correct +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | mention -0.092 CI[-0.175,-0.008] b/c=8/19 p=0.0522 | substit +0.092 CI[+0.008,+0.175] b/c=19/8 p=0.0522
+  H=24-H=6 at first          | correct +0.100 CI[+0.000,+0.200] b/c=26/14 p=0.0807 | mention -0.058 CI[-0.117,-0.008] b/c=2/9 p=0.0654 | substit +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  H=24-H=6 at middle         | correct -0.008 CI[-0.025,+0.000] b/c=0/1 p=1 | mention -0.167 CI[-0.250,-0.083] b/c=5/25 p=0.000325 | substit +0.167 CI[+0.083,+0.250] b/c=25/5 p=0.000325
+  H=24-H=6 at last           | correct +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | mention +0.000 CI[-0.092,+0.092] b/c=15/15 p=1 | substit +0.000 CI[-0.092,+0.092] b/c=15/15 p=1
+
+  LPM correct ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.375 se 0.045 [+0.288,+0.462] p=9.86e-14
+    mid          RD -0.367 se 0.044 [-0.454,-0.280] p=2.18e-13  <-- clears SESOI
+    last         RD -0.375 se 0.045 [-0.462,-0.288] p=9.86e-14  <-- clears SESOI
+    long         RD +0.100 se 0.052 [-0.003,+0.203] p=0.0583
+    mid_x_long   RD -0.108 se 0.053 [-0.212,-0.005] p=0.0425  <-- clears SESOI
+    last_x_long  RD -0.100 se 0.052 [-0.203,+0.003] p=0.0583
+
+  LPM mentions_gold ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.967 se 0.017 [+0.934,+0.999] p=1.43e-89
+    mid          RD -0.125 se 0.035 [-0.193,-0.057] p=0.00047  <-- clears SESOI
+    last         RD -0.200 se 0.042 [-0.283,-0.117] p=5.87e-06  <-- clears SESOI
+    long         RD -0.058 se 0.027 [-0.112,-0.005] p=0.0349  <-- clears SESOI
+    mid_x_long   RD -0.108 se 0.051 [-0.209,-0.007] p=0.0375  <-- clears SESOI
+    last_x_long  RD +0.058 se 0.052 [-0.044,+0.161] p=0.266
+
+  LPM substitution ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.000 se nan [+nan,+nan] p=nan
+    mid          RD +0.158 se 0.034 [+0.093,+0.224] p=6.63e-06  <-- clears SESOI
+    last         RD +0.233 se 0.039 [+0.157,+0.310] p=2.21e-08  <-- clears SESOI
+    long         RD -0.000 se 0.000 [-0.000,+0.000] p=1
+    mid_x_long   RD +0.167 se 0.043 [+0.082,+0.252] p=0.000196  <-- clears SESOI
+    last_x_long  RD +0.000 se 0.046 [-0.090,+0.090] p=1
+
+  largest position-induced FIDELITY LOSS over the 7 planned contrasts: 0.475 (H24_middle-H24_first on correct) vs pre-declared floor 0.03 -> POSITION IS ACTIONABLE
+
+### qwen3:14b: 720 calls, 120 sessions, err-answers 0
+
+== qwen3:14b: position of the gold line in the STATE head (one competing near-twin value in context in every cell) ==
+  H slot    gold@   chars    tok    n               correct         mentions_gold          substitution  other
+  6 first        0   1915  529.3  120   [0.942 0.884,0.971]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+  6 middle       3   1915  529.3  120   [0.042 0.018,0.094]   [0.133 0.084,0.206]   [0.550 0.461,0.636]  0.317
+  6 last         5   1915  529.3  120   [0.108 0.064,0.177]   [0.233 0.167,0.317]   [0.658 0.570,0.737]  0.108
+ 24 first        0   4794 1271.4  120   [0.933 0.874,0.966]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+ 24 middle      12   4794 1271.4  120   [0.008 0.001,0.046]   [0.158 0.104,0.234]   [0.742 0.657,0.812]  0.100
+ 24 last        23   4794 1271.4  120   [0.025 0.009,0.071]   [0.175 0.117,0.253]   [0.742 0.657,0.812]  0.083
+  prompt size (not a manipulated axis): H=6: 529.3 tok mean [400, 713], 1915 chars mean [1541, 2770]  H=24: 1271.4 tok mean [1007, 1650], 4794 chars mean [3953, 6447]  
+  char spread across the three slots within a (session, H) group: max 0 over 240 groups (permutation of one line: expected 0)
+  H=6  middle - first        | correct -0.900 CI[-0.950,-0.842] b/c=0/108 p=6.16e-33 | mention -0.850 CI[-0.908,-0.783] b/c=0/102 p=3.94e-31 | substit +0.550 CI[+0.458,+0.642] b/c=66/0 p=2.71e-20
+  H=6  middle - last         | correct -0.067 CI[-0.125,-0.017] b/c=2/10 p=0.0386 | mention -0.100 CI[-0.183,-0.017] b/c=8/20 p=0.0357 | substit -0.108 CI[-0.200,-0.008] b/c=12/25 p=0.047
+  H=24 middle - first        | correct -0.925 CI[-0.967,-0.875] b/c=0/111 p=7.7e-34 | mention -0.825 CI[-0.892,-0.750] b/c=1/100 p=8.05e-29 | substit +0.742 CI[+0.658,+0.817] b/c=89/0 p=3.23e-27
+  H=24 middle - last         | correct -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5 | mention -0.017 CI[-0.083,+0.050] b/c=8/10 p=0.815 | substit +0.000 CI[-0.075,+0.075] b/c=10/10 p=1
+  H=24-H=6 at first          | correct -0.008 CI[-0.042,+0.025] b/c=2/3 p=1 | mention +0.000 CI[-0.025,+0.025] b/c=1/1 p=1 | substit +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  H=24-H=6 at middle         | correct -0.033 CI[-0.067,-0.008] b/c=0/4 p=0.125 | mention +0.025 CI[-0.058,+0.108] b/c=14/11 p=0.69 | substit +0.192 CI[+0.083,+0.300] b/c=35/12 p=0.00109
+  H=24-H=6 at last           | correct -0.083 CI[-0.133,-0.033] b/c=0/10 p=0.00195 | mention -0.058 CI[-0.142,+0.017] b/c=8/15 p=0.21 | substit +0.083 CI[-0.008,+0.175] b/c=22/12 p=0.121
+
+  LPM correct ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.942 se 0.022 [+0.899,+0.984] p=4.15e-75
+    mid          RD -0.900 se 0.028 [-0.954,-0.846] p=3.53e-61  <-- clears SESOI
+    last         RD -0.833 se 0.034 [-0.901,-0.766] p=5.66e-48  <-- clears SESOI
+    long         RD -0.008 se 0.019 [-0.045,+0.028] p=0.658
+    mid_x_long   RD -0.025 se 0.025 [-0.074,+0.024] p=0.321
+    last_x_long  RD -0.075 se 0.032 [-0.137,-0.013] p=0.0199  <-- clears SESOI
+
+  LPM mentions_gold ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.983 se 0.012 [+0.960,+1.006] p=1.75e-107
+    mid          RD -0.850 se 0.033 [-0.914,-0.786] p=1.07e-50  <-- clears SESOI
+    last         RD -0.750 se 0.040 [-0.828,-0.672] p=1.73e-37  <-- clears SESOI
+    long         RD -0.000 se 0.012 [-0.023,+0.023] p=1
+    mid_x_long   RD +0.025 se 0.044 [-0.060,+0.110] p=0.567
+    last_x_long  RD -0.058 se 0.043 [-0.143,+0.027] p=0.181
+
+  LPM substitution ~ position*headlength, reference cell = first@short (cluster-robust on 120 sessions):
+    const        RD +0.000 se nan [+nan,+nan] p=nan
+    mid          RD +0.550 se 0.046 [+0.460,+0.640] p=2.86e-22  <-- clears SESOI
+    last         RD +0.658 se 0.044 [+0.573,+0.744] p=2.09e-29  <-- clears SESOI
+    long         RD -0.000 se nan [+nan,+nan] p=nan
+    mid_x_long   RD +0.192 se 0.055 [+0.084,+0.299] p=0.000662  <-- clears SESOI
+    last_x_long  RD +0.083 se 0.048 [-0.011,+0.178] p=0.0875
+
+  largest position-induced FIDELITY LOSS over the 7 planned contrasts: 0.925 (H24_middle-H24_first on correct) vs pre-declared floor 0.03 -> POSITION IS ACTIONABLE
+
+== cross-model sign consistency (risk difference, middle - first) ==
+  H24_middle-H24_first         correct        llama3:latest -0.475 (p=1.39e-17) | qwen3:14b -0.925 (p=7.7e-34)
+  H24_middle-H24_first         mentions_gold  llama3:latest -0.233 (p=1.51e-05) | qwen3:14b -0.825 (p=8.05e-29)
+  H24_middle-H24_first         substitution   llama3:latest +0.325 (p=3.64e-12) | qwen3:14b +0.742 (p=3.23e-27)
+  H24_middle-H24_last          correct        llama3:latest +0.000 (p=1) | qwen3:14b -0.017 (p=0.5)
+  H24_middle-H24_last          mentions_gold  llama3:latest -0.092 (p=0.0522) | qwen3:14b -0.017 (p=0.815)
+  H24_middle-H24_last          substitution   llama3:latest +0.092 (p=0.0522) | qwen3:14b +0.000 (p=1)
+  H24_middle-H6_middle         correct        llama3:latest -0.008 (p=1) | qwen3:14b -0.033 (p=0.125)
+  H24_middle-H6_middle         mentions_gold  llama3:latest -0.167 (p=0.000325) | qwen3:14b +0.025 (p=0.69)
+  H24_middle-H6_middle         substitution   llama3:latest +0.167 (p=0.000325) | qwen3:14b +0.192 (p=0.00109)
+  H6_middle-H6_first           correct        llama3:latest -0.367 (p=1.14e-13) | qwen3:14b -0.900 (p=6.16e-33)
+  H6_middle-H6_first           mentions_gold  llama3:latest -0.125 (p=0.000729) | qwen3:14b -0.850 (p=3.94e-31)
+  H6_middle-H6_first           substitution   llama3:latest +0.158 (p=3.81e-06) | qwen3:14b +0.550 (p=2.71e-20)
+  H6_middle-H6_last            correct        llama3:latest +0.008 (p=1) | qwen3:14b -0.067 (p=0.0386)
+  H6_middle-H6_last            mentions_gold  llama3:latest +0.075 (p=0.0931) | qwen3:14b -0.100 (p=0.0357)
+  H6_middle-H6_last            substitution   llama3:latest -0.075 (p=0.0931) | qwen3:14b -0.108 (p=0.047)
+
+-> position_analysis.json (written next to this script)

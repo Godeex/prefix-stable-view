@@ -1,0 +1,22 @@
+== mode=size; stratum set: sensitivity: all >=7B checkpoints (size-only criterion, no outcome filter); danger slice: LO kept a near-twin (max_sim>=0.60) ==
+
+== per-stratum slice size and discordants ==
+  llama3:latest_t0.0         b=7 c=3
+  llama3:latest_t0.6         b=7 c=3
+  mistral:latest_t0.0        b=10 c=3
+  mistral:latest_t0.6        b=9 c=2
+  qwen2.5:14b_t0.0           b=6 c=0
+  qwen2.5:14b_t0.6           b=6 c=2
+  qwen3.8:27b_t0.0           b=6 c=3
+  qwen3.8:27b_t0.5           b=7 c=3
+  qwen3:14b_t0.0             b=7 c=2
+  qwen3:14b_t0.6             b=7 c=3
+  qwen3:8b_t0.0              b=2 c=2
+  qwen3:8b_t0.7              b=2 c=2
+
+(1) naive pooled McNemar: B=76 C=28 p=2.737e-06  [ANTI-CONSERVATIVE: ignores within-question + within-model correlation]
+(2) Mantel-Haenszel over 12 all (model,temp) cells: sum(b-c)=48 sum(b+c)=104 T=22.15 chi2_1 p=2.517e-06
+(2b) Mantel-Haenszel over 6 independent temp0 model strata: sum(b-c)=25 sum(b+c)=51 T=12.25 chi2_1 p=0.000464
+(3) QUESTION-cluster bootstrap (47 questions, 558 paired rows, sensitivity: all >=7B checkpoints (size-only criterion, no outcome filter)):
+    D_hat (LO-MA substitution diff) = 0.0860  95% CI [0.0144,0.1679]  P(D<=0)=0.00875  -> SIGNIFICANT (CI>0)
+(4) design precision: per-question SD=0.2694 SE=0.0393 1.96SE=0.0770 80%-power MDE=0.1101 n to put the lower bound over 0.03=89 n for MDE80=0.03=633

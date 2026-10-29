@@ -1,0 +1,349 @@
+
+== qwen3:14b cost run (paired cells 552) ==
+  length_only    prompt 1574.94 cached   17.63 recompute 1557.31 prefill  1055.5 ms acc 1.000
+  prefix_stable  prompt  445.48 cached  196.81 recompute  248.67 prefill   204.7 ms acc 1.000
+  pinned_raw     prompt 1584.28 cached 1299.09 recompute  285.19 prefill   229.7 ms acc 1.000
+  length_only_minus_stable           +1308.65 tok 95%CI[1280.08,1331.02]
+  pinned_raw_minus_stable            +36.52 tok 95%CI[35.18,37.83]
+  length_only_over_stable_ratio      6.263  95%CI[6.221,6.311]
+  pinned_raw_over_stable_ratio       1.147  95%CI[1.141,1.153]
+
+== qwen2.5:14b cost run (paired cells 552) ==
+  length_only    prompt 1588.94 cached   39.58 recompute 1549.36 prefill  1058.9 ms acc 0.987
+  prefix_stable  prompt  459.48 cached  218.81 recompute  240.67 prefill   202.5 ms acc 1.000
+  pinned_raw     prompt 1598.28 cached 1321.09 recompute  277.19 prefill   230.1 ms acc 0.998
+  length_only_minus_stable           +1308.70 tok 95%CI[1280.15,1331.06]
+  pinned_raw_minus_stable            +36.52 tok 95%CI[35.18,37.83]
+  length_only_over_stable_ratio      6.438  95%CI[6.393,6.491]
+  pinned_raw_over_stable_ratio       1.152  95%CI[1.146,1.158]
+
+== bounded head ==
+  turns 396 folds 48 observed period 8.25
+  append 246.7 fold 456.1 mean 272.1 predicted from observed period 272.1
+  naive 1564.7 unbounded 248.3 ratio 5.75
+  saving vs naive 1292.6 CI[1271.1266414141414, 1315.472664141414] surcharge 23.8 CI[23.275252525252526, 24.373737373737374]
+
+== base 2x2 qwen3:14b (1632 cells) ==
+  c00 n=408 subst 0.392 CI[0.346, 0.44] correct 0.118 other 0.490 recomp 538.1
+  c01 n=408 subst 0.002 CI[0.0, 0.014] correct 0.696 other 0.301 recomp 275.4
+  c10 n=408 subst 0.000 CI[0.0, 0.009] correct 0.728 other 0.272 recomp 537.5
+  c11 n=408 subst 0.000 CI[0.0, 0.009] correct 0.512 other 0.488 recomp 275.2
+  McNemar c00 vs c01 subst: b=159 c=0 p=2.74e-48
+  McNemar c01 vs c11 correct: b=99 c=24 p=5.17e-12
+
+== tail stress qwen3:14b (480 cells) ==
+  c00 n=120 subst 0.808 CI[0.729, 0.869] correct 0.058 other 0.133 recomp 790.7
+  c01 n=120 subst 0.000 CI[0.0, 0.031] correct 0.842 other 0.158 recomp 377.8
+  c10 n=120 subst 0.000 CI[0.0, 0.031] correct 0.683 other 0.317 recomp 789.6
+  c11 n=120 subst 0.000 CI[0.0, 0.031] correct 0.750 other 0.250 recomp 376.8
+  McNemar c00 vs c01 subst: b=97 c=0 p=1.26e-29
+  McNemar c01 vs c11 correct: b=20 c=9 p=0.0614
+
+== forced commit qwen3:14b (480 cells) ==
+  c00 n=120 subst 0.617 CI[0.527, 0.699] correct 0.383 other -0.000 recomp 810.7
+  c01 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 397.8
+  c10 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 809.6
+  c11 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 396.8
+  McNemar c00 vs c01 subst: b=74 c=0 p=1.06e-22
+  McNemar c01 vs c11 correct: b=0 c=0 p=1
+
+== forced commit qwen3:14b, 2nd epoch (480 cells) ==
+  c00 n=120 subst 0.550 CI[0.461, 0.636] correct 0.450 other -0.000 recomp 810.7
+  c01 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 397.8
+  c10 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 809.6
+  c11 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 396.8
+  McNemar c00 vs c01 subst: b=66 c=0 p=2.71e-20
+  McNemar c01 vs c11 correct: b=0 c=0 p=1
+
+== forced commit llama3:latest (480 cells) ==
+  c00 n=120 subst 0.967 CI[0.917, 0.987] correct 0.033 other -0.000 recomp 765.6
+  c01 n=120 subst 0.000 CI[0.0, 0.031] correct 0.992 other 0.008 recomp 370.7
+  c10 n=120 subst 0.000 CI[0.0, 0.031] correct 0.950 other 0.050 recomp 767.1
+  c11 n=120 subst 0.000 CI[0.0, 0.031] correct 1.000 other 0.000 recomp 372.3
+  McNemar c00 vs c01 subst: b=116 c=0 p=2.41e-35
+  McNemar c01 vs c11 correct: b=0 c=1 p=1
+
+== layout 2x2 (labels x stability), complete cells 408 ==
+  s0l0 n=408 subst 0.473 CI[0.425, 0.522] correct 0.113 other 0.414 recomp 538 prompt 567 competing 1.06
+  s0l1 n=408 subst 0.387 CI[0.341, 0.435] correct 0.191 other 0.422 recomp 536 prompt 575 competing 1.06
+  s1l0 n=408 subst 0.000 CI[0.0, 0.009] correct 0.828 other 0.172 recomp 269 prompt 563 competing 1.06
+  s1l1 n=408 subst 0.000 CI[0.0, 0.009] correct 0.608 other 0.392 recomp 275 prompt 575 competing 1.06
+
+== position stress (tab:position) ==
+  llama3:latest: 720 calls, 120 sessions
+    H6_first     n= 120 tok   493.6 corr 0.375 CI[0.294,0.464] subst 0.000 CI[0.000,0.031] gold@0
+    H6_middle    n= 120 tok   493.6 corr 0.008 CI[0.001,0.046] subst 0.158 CI[0.104,0.234] gold@3
+    H6_last      n= 120 tok   493.6 corr 0.000 CI[0.000,0.031] subst 0.233 CI[0.167,0.317] gold@5
+    H24_first    n= 120 tok  1191.3 corr 0.475 CI[0.388,0.564] subst 0.000 CI[0.000,0.031] gold@0
+    H24_middle   n= 120 tok  1191.3 corr 0.000 CI[0.000,0.031] subst 0.325 CI[0.248,0.413] gold@12
+    H24_last     n= 120 tok  1191.3 corr 0.000 CI[0.000,0.031] subst 0.233 CI[0.167,0.317] gold@23
+    H6 middle-first        correct      -0.367 CI[-0.450,-0.283] b/c=0/44 p=1.14e-13
+    H6 middle-first        substitution +0.158 CI[+0.092,+0.225] b/c=19/0 p=3.81e-06
+    H6 last-first          correct      -0.375 CI[-0.458,-0.292] b/c=0/45 p=5.68e-14
+    H6 last-first          substitution +0.233 CI[+0.158,+0.308] b/c=28/0 p=7.45e-09
+    H6 middle-last         correct      +0.008 CI[+0.000,+0.025] b/c=1/0 p=1
+    H6 middle-last         substitution -0.075 CI[-0.150,+0.000] b/c=7/16 p=0.0931
+    H24 middle-first       correct      -0.475 CI[-0.567,-0.383] b/c=0/57 p=1.39e-17
+    H24 middle-first       substitution +0.325 CI[+0.242,+0.408] b/c=39/0 p=3.64e-12
+    H24 last-first         correct      -0.475 CI[-0.567,-0.383] b/c=0/57 p=1.39e-17
+    H24 last-first         substitution +0.233 CI[+0.158,+0.317] b/c=28/0 p=7.45e-09
+    H24 middle-last        correct      +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+    H24 middle-last        substitution +0.092 CI[+0.008,+0.175] b/c=19/8 p=0.0522
+    H24-H6 at first        correct      +0.100 CI[+0.000,+0.200] b/c=26/14 p=0.0807
+    H24-H6 at first        substitution +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+    H24-H6 at middle       correct      -0.008 CI[-0.025,+0.000] b/c=0/1 p=1
+    H24-H6 at middle       substitution +0.167 CI[+0.083,+0.250] b/c=25/5 p=0.000325
+    H24-H6 at last         correct      +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+    H24-H6 at last         substitution +0.000 CI[-0.092,+0.092] b/c=15/15 p=1
+    LPM correct        mid x long -0.108 se 0.053 p=0.0425
+    LPM mentions_gold  mid x long -0.108 se 0.051 p=0.0375
+    LPM substitution   mid x long +0.167 se 0.043 p=0.000196
+  qwen3:14b: 720 calls, 120 sessions
+    H6_first     n= 120 tok   529.3 corr 0.942 CI[0.884,0.971] subst 0.000 CI[0.000,0.031] gold@0
+    H6_middle    n= 120 tok   529.3 corr 0.042 CI[0.018,0.094] subst 0.550 CI[0.461,0.636] gold@3
+    H6_last      n= 120 tok   529.3 corr 0.108 CI[0.064,0.177] subst 0.658 CI[0.570,0.737] gold@5
+    H24_first    n= 120 tok  1271.4 corr 0.933 CI[0.874,0.966] subst 0.000 CI[0.000,0.031] gold@0
+    H24_middle   n= 120 tok  1271.4 corr 0.008 CI[0.001,0.046] subst 0.742 CI[0.657,0.812] gold@12
+    H24_last     n= 120 tok  1271.4 corr 0.025 CI[0.009,0.071] subst 0.742 CI[0.657,0.812] gold@23
+    H6 middle-first        correct      -0.900 CI[-0.950,-0.842] b/c=0/108 p=6.16e-33
+    H6 middle-first        substitution +0.550 CI[+0.458,+0.642] b/c=66/0 p=2.71e-20
+    H6 last-first          correct      -0.833 CI[-0.900,-0.767] b/c=0/100 p=1.58e-30
+    H6 last-first          substitution +0.658 CI[+0.575,+0.742] b/c=79/0 p=3.31e-24
+    H6 middle-last         correct      -0.067 CI[-0.125,-0.017] b/c=2/10 p=0.0386
+    H6 middle-last         substitution -0.108 CI[-0.200,-0.008] b/c=12/25 p=0.047
+    H24 middle-first       correct      -0.925 CI[-0.967,-0.875] b/c=0/111 p=7.7e-34
+    H24 middle-first       substitution +0.742 CI[+0.658,+0.817] b/c=89/0 p=3.23e-27
+    H24 last-first         correct      -0.908 CI[-0.958,-0.858] b/c=0/109 p=3.08e-33
+    H24 last-first         substitution +0.742 CI[+0.658,+0.817] b/c=89/0 p=3.23e-27
+    H24 middle-last        correct      -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5
+    H24 middle-last        substitution +0.000 CI[-0.075,+0.075] b/c=10/10 p=1
+    H24-H6 at first        correct      -0.008 CI[-0.042,+0.025] b/c=2/3 p=1
+    H24-H6 at first        substitution +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+    H24-H6 at middle       correct      -0.033 CI[-0.067,-0.008] b/c=0/4 p=0.125
+    H24-H6 at middle       substitution +0.192 CI[+0.083,+0.300] b/c=35/12 p=0.00109
+    H24-H6 at last         correct      -0.083 CI[-0.133,-0.033] b/c=0/10 p=0.00195
+    H24-H6 at last         substitution +0.083 CI[-0.008,+0.175] b/c=22/12 p=0.121
+    LPM correct        mid x long -0.025 se 0.025 p=0.321
+    LPM mentions_gold  mid x long +0.025 se 0.044 p=0.567
+    LPM substitution   mid x long +0.192 se 0.055 p=0.000662
+
+== rewritable-index fidelity (tab:index-fid) ==
+  llama3:latest: 2160 calls, 120 sessions, arms ['plain', 'index', 'index_nok']
+    plain_H6_first         n= 120 idx_rows  0 corr 1.000 CI[0.969,1.000] subst 0.000
+    plain_H6_middle        n= 120 idx_rows  0 corr 0.992 CI[0.954,0.999] subst 0.000
+    plain_H6_last          n= 120 idx_rows  0 corr 0.975 CI[0.929,0.991] subst 0.000
+    plain_H24_first        n= 120 idx_rows  0 corr 1.000 CI[0.969,1.000] subst 0.000
+    plain_H24_middle       n= 120 idx_rows  0 corr 0.967 CI[0.917,0.987] subst 0.000
+    plain_H24_last         n= 120 idx_rows  0 corr 0.950 CI[0.895,0.977] subst 0.000
+    index_H6_first         n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_H6_middle        n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_H6_last          n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_H24_first        n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_H24_middle       n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_H24_last         n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_nok_H6_first     n= 120 idx_rows  1 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_nok_H6_middle    n= 120 idx_rows  1 corr 0.983 CI[0.941,0.995] subst 0.000
+    index_nok_H6_last      n= 120 idx_rows  1 corr 0.983 CI[0.941,0.995] subst 0.000
+    index_nok_H24_first    n= 120 idx_rows  1 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_nok_H24_middle   n= 120 idx_rows  1 corr 0.925 CI[0.864,0.960] subst 0.000
+    index_nok_H24_last     n= 120 idx_rows  1 corr 0.983 CI[0.941,0.995] subst 0.000
+    gradient plain_H6_middle-first    -0.008 CI[-0.025,+0.000] p=1
+    gradient plain_H6_last-first      -0.025 CI[-0.058,+0.000] p=0.25
+    gradient plain_H24_middle-first   -0.033 CI[-0.067,-0.008] p=0.125
+    gradient plain_H24_last-first     -0.050 CI[-0.092,-0.017] p=0.0312
+    gradient index_H6_middle-first    +0.000 CI[+0.000,+0.000] p=1
+    gradient index_H6_last-first      +0.000 CI[+0.000,+0.000] p=1
+    gradient index_H24_middle-first   +0.000 CI[+0.000,+0.000] p=1
+    gradient index_H24_last-first     +0.000 CI[+0.000,+0.000] p=1
+    gradient index_nok_H6_middle-first -0.017 CI[-0.042,+0.000] p=0.5
+    gradient index_nok_H6_last-first  -0.017 CI[-0.042,+0.000] p=0.5
+    gradient index_nok_H24_middle-first -0.075 CI[-0.125,-0.033] p=0.00391
+    gradient index_nok_H24_last-first -0.017 CI[-0.042,+0.000] p=0.5
+    vs plain index_H6_first           corr +0.000 CI[+0.000,+0.000] p=1 | subst +0.000 p=1
+    vs plain index_nok_H6_first       corr +0.000 CI[+0.000,+0.000] p=1 | subst +0.000 p=1
+    vs plain index_H6_middle          corr +0.008 CI[+0.000,+0.025] p=1 | subst +0.000 p=1
+    vs plain index_nok_H6_middle      corr -0.008 CI[-0.042,+0.017] p=1 | subst +0.000 p=1
+    vs plain index_H6_last            corr +0.025 CI[+0.000,+0.058] p=0.25 | subst +0.000 p=1
+    vs plain index_nok_H6_last        corr +0.008 CI[-0.025,+0.042] p=1 | subst +0.000 p=1
+    vs plain index_H24_first          corr +0.000 CI[+0.000,+0.000] p=1 | subst +0.000 p=1
+    vs plain index_nok_H24_first      corr +0.000 CI[+0.000,+0.000] p=1 | subst +0.000 p=1
+    vs plain index_H24_middle         corr +0.033 CI[+0.008,+0.067] p=0.125 | subst +0.000 p=1
+    vs plain index_nok_H24_middle     corr -0.042 CI[-0.083,-0.008] p=0.0625 | subst +0.000 p=1
+    vs plain index_H24_last           corr +0.050 CI[+0.017,+0.092] p=0.0312 | subst +0.000 p=1
+    vs plain index_nok_H24_last       corr +0.033 CI[+0.000,+0.075] p=0.219 | subst +0.000 p=1
+    P3 index-index_nok H6_middle      +0.017 CI[+0.000,+0.042] p=0.5
+    P3 index-index_nok H6_last        +0.017 CI[+0.000,+0.042] p=0.5
+    P3 index-index_nok H24_middle     +0.075 CI[+0.033,+0.125] p=0.00391
+    P3 index-index_nok H24_last       +0.017 CI[+0.000,+0.042] p=0.5
+    DiD [middle-first]_index-[middle-first]_plain H6     +0.008 CI[+0.000,+0.025] n=120 p=0.317
+    DiD [middle-first]_index-[middle-first]_plain H24    +0.033 CI[+0.008,+0.067] n=120 p=0.0455
+  qwen3:14b: 2160 calls, 120 sessions, arms ['plain', 'index', 'index_nok']
+    plain_H6_first         n= 120 idx_rows  0 corr 0.975 CI[0.929,0.991] subst 0.000
+    plain_H6_middle        n= 120 idx_rows  0 corr 0.758 CI[0.674,0.826] subst 0.000
+    plain_H6_last          n= 120 idx_rows  0 corr 0.725 CI[0.639,0.797] subst 0.000
+    plain_H24_first        n= 120 idx_rows  0 corr 0.975 CI[0.929,0.991] subst 0.000
+    plain_H24_middle       n= 120 idx_rows  0 corr 0.600 CI[0.511,0.683] subst 0.000
+    plain_H24_last         n= 120 idx_rows  0 corr 0.483 CI[0.396,0.572] subst 0.000
+    index_H6_first         n= 120 idx_rows  2 corr 0.942 CI[0.884,0.971] subst 0.000
+    index_H6_middle        n= 120 idx_rows  2 corr 0.892 CI[0.823,0.936] subst 0.000
+    index_H6_last          n= 120 idx_rows  2 corr 0.975 CI[0.929,0.991] subst 0.000
+    index_H24_first        n= 120 idx_rows  2 corr 0.958 CI[0.906,0.982] subst 0.000
+    index_H24_middle       n= 120 idx_rows  2 corr 0.800 CI[0.720,0.862] subst 0.000
+    index_H24_last         n= 120 idx_rows  2 corr 1.000 CI[0.969,1.000] subst 0.000
+    index_nok_H6_first     n= 120 idx_rows  1 corr 0.925 CI[0.864,0.960] subst 0.000
+    index_nok_H6_middle    n= 120 idx_rows  1 corr 0.775 CI[0.692,0.841] subst 0.000
+    index_nok_H6_last      n= 120 idx_rows  1 corr 0.742 CI[0.657,0.812] subst 0.000
+    index_nok_H24_first    n= 120 idx_rows  1 corr 0.958 CI[0.906,0.982] subst 0.000
+    index_nok_H24_middle   n= 120 idx_rows  1 corr 0.625 CI[0.536,0.706] subst 0.000
+    index_nok_H24_last     n= 120 idx_rows  1 corr 0.600 CI[0.511,0.683] subst 0.000
+    gradient plain_H6_middle-first    -0.217 CI[-0.292,-0.142] p=2.16e-07
+    gradient plain_H6_last-first      -0.250 CI[-0.333,-0.175] p=1.54e-08
+    gradient plain_H24_middle-first   -0.375 CI[-0.467,-0.283] p=6.82e-13
+    gradient plain_H24_last-first     -0.492 CI[-0.592,-0.400] p=5.38e-17
+    gradient index_H6_middle-first    -0.050 CI[-0.117,+0.017] p=0.238
+    gradient index_H6_last-first      +0.033 CI[-0.017,+0.083] p=0.344
+    gradient index_H24_middle-first   -0.158 CI[-0.233,-0.083] p=6.6e-05
+    gradient index_H24_last-first     +0.042 CI[+0.008,+0.083] p=0.0625
+    gradient index_nok_H6_middle-first -0.150 CI[-0.225,-0.075] p=0.000277
+    gradient index_nok_H6_last-first  -0.183 CI[-0.267,-0.100] p=5.95e-05
+    gradient index_nok_H24_middle-first -0.333 CI[-0.425,-0.242] p=4.62e-10
+    gradient index_nok_H24_last-first -0.358 CI[-0.450,-0.267] p=1.6e-11
+    vs plain index_H6_first           corr -0.033 CI[-0.067,-0.008] p=0.125 | subst +0.000 p=1
+    vs plain index_nok_H6_first       corr -0.050 CI[-0.092,-0.017] p=0.0312 | subst +0.000 p=1
+    vs plain index_H6_middle          corr +0.133 CI[+0.067,+0.208] p=0.000402 | subst +0.000 p=1
+    vs plain index_nok_H6_middle      corr +0.017 CI[-0.033,+0.067] p=0.754 | subst +0.000 p=1
+    vs plain index_H6_last            corr +0.250 CI[+0.175,+0.325] p=1.86e-09 | subst +0.000 p=1
+    vs plain index_nok_H6_last        corr +0.017 CI[-0.033,+0.067] p=0.754 | subst +0.000 p=1
+    vs plain index_H24_first          corr -0.017 CI[-0.058,+0.025] p=0.688 | subst +0.000 p=1
+    vs plain index_nok_H24_first      corr -0.017 CI[-0.042,+0.000] p=0.5 | subst +0.000 p=1
+    vs plain index_H24_middle         corr +0.200 CI[+0.125,+0.275] p=8.05e-07 | subst +0.000 p=1
+    vs plain index_nok_H24_middle     corr +0.025 CI[-0.025,+0.075] p=0.508 | subst +0.000 p=1
+    vs plain index_H24_last           corr +0.517 CI[+0.425,+0.608] p=4.34e-19 | subst +0.000 p=1
+    vs plain index_nok_H24_last       corr +0.117 CI[+0.050,+0.183] p=0.00258 | subst +0.000 p=1
+    P3 index-index_nok H6_middle      +0.117 CI[+0.050,+0.183] p=0.00131
+    P3 index-index_nok H6_last        +0.233 CI[+0.158,+0.308] p=7.45e-09
+    P3 index-index_nok H24_middle     +0.175 CI[+0.108,+0.250] p=5.72e-06
+    P3 index-index_nok H24_last       +0.400 CI[+0.317,+0.483] p=7.11e-15
+    DiD [middle-first]_index-[middle-first]_plain H6     +0.167 CI[+0.092,+0.250] n=120 p=8.77e-05
+    DiD [middle-first]_index-[middle-first]_plain H24    +0.217 CI[+0.133,+0.300] n=120 p=4.3e-06
+
+== shared-key index fidelity (tab:index-sk) ==
+  llama3:latest: 2160 calls (1440 index/index_nok + 720 published C7 plain), 120 sessions
+    plain_H6_first         n= 120 corr 0.375 CI[0.294,0.464] subst 0.000 CI[0.000,0.031] other 0.033
+    plain_H6_middle        n= 120 corr 0.008 CI[0.001,0.046] subst 0.158 CI[0.104,0.234] other 0.000
+    plain_H6_last          n= 120 corr 0.000 CI[0.000,0.031] subst 0.233 CI[0.167,0.317] other 0.000
+    plain_H24_first        n= 120 corr 0.475 CI[0.388,0.564] subst 0.000 CI[0.000,0.031] other 0.092
+    plain_H24_middle       n= 120 corr 0.000 CI[0.000,0.031] subst 0.325 CI[0.248,0.413] other 0.000
+    plain_H24_last         n= 120 corr 0.000 CI[0.000,0.031] subst 0.233 CI[0.167,0.317] other 0.000
+    index_H6_first         n= 120 corr 1.000 CI[0.969,1.000] subst 0.000 CI[0.000,0.031] other 0.000
+    index_H6_middle        n= 120 corr 0.833 CI[0.757,0.889] subst 0.158 CI[0.104,0.234] other 0.000
+    index_H6_last          n= 120 corr 0.592 CI[0.502,0.675] subst 0.392 CI[0.309,0.481] other 0.000
+    index_H24_first        n= 120 corr 0.983 CI[0.941,0.995] subst 0.000 CI[0.000,0.031] other 0.017
+    index_H24_middle       n= 120 corr 0.625 CI[0.536,0.706] subst 0.275 CI[0.203,0.361] other 0.008
+    index_H24_last         n= 120 corr 0.608 CI[0.519,0.691] subst 0.242 CI[0.174,0.326] other 0.025
+    index_nok_H6_first     n= 120 corr 0.717 CI[0.630,0.790] subst 0.258 CI[0.188,0.343] other 0.008
+    index_nok_H6_middle    n= 120 corr 0.000 CI[0.000,0.031] subst 1.000 CI[0.969,1.000] other 0.000
+    index_nok_H6_last      n= 120 corr 0.000 CI[0.000,0.031] subst 1.000 CI[0.969,1.000] other 0.000
+    index_nok_H24_first    n= 120 corr 0.600 CI[0.511,0.683] subst 0.292 CI[0.218,0.378] other 0.108
+    index_nok_H24_middle   n= 120 corr 0.000 CI[0.000,0.031] subst 0.983 CI[0.941,0.995] other 0.008
+    index_nok_H24_last     n= 120 corr 0.000 CI[0.000,0.031] subst 0.958 CI[0.906,0.982] other 0.017
+    pooled plain      corr 0.143 subst 0.158
+    pooled index      corr 0.774 subst 0.178
+    pooled index_nok  corr 0.219 subst 0.749
+    Q-A index-plain correct, mean over H at slot middle: +0.725
+    Q-A index-plain correct, mean over H at slot last: +0.600
+    Q-B stale-index substitution vs plain, mean: +0.590
+    Q-C index vs index_nok correct, mean: +0.554
+  qwen3:14b: 2160 calls (1440 index/index_nok + 720 published C7 plain), 120 sessions
+    plain_H6_first         n= 120 corr 0.942 CI[0.884,0.971] subst 0.000 CI[0.000,0.031] other 0.017
+    plain_H6_middle        n= 120 corr 0.042 CI[0.018,0.094] subst 0.550 CI[0.461,0.636] other 0.317
+    plain_H6_last          n= 120 corr 0.108 CI[0.064,0.177] subst 0.658 CI[0.570,0.737] other 0.108
+    plain_H24_first        n= 120 corr 0.933 CI[0.874,0.966] subst 0.000 CI[0.000,0.031] other 0.017
+    plain_H24_middle       n= 120 corr 0.008 CI[0.001,0.046] subst 0.742 CI[0.657,0.812] other 0.100
+    plain_H24_last         n= 120 corr 0.025 CI[0.009,0.071] subst 0.742 CI[0.657,0.812] other 0.083
+    index_H6_first         n= 120 corr 0.958 CI[0.906,0.982] subst 0.000 CI[0.000,0.031] other 0.042
+    index_H6_middle        n= 120 corr 0.475 CI[0.388,0.564] subst 0.000 CI[0.000,0.031] other 0.525
+    index_H6_last          n= 120 corr 0.633 CI[0.544,0.714] subst 0.000 CI[0.000,0.031] other 0.367
+    index_H24_first        n= 120 corr 0.967 CI[0.917,0.987] subst 0.000 CI[0.000,0.031] other 0.033
+    index_H24_middle       n= 120 corr 0.467 CI[0.380,0.556] subst 0.008 CI[0.001,0.046] other 0.525
+    index_H24_last         n= 120 corr 0.525 CI[0.436,0.612] subst 0.017 CI[0.005,0.059] other 0.458
+    index_nok_H6_first     n= 120 corr 0.058 CI[0.029,0.116] subst 0.817 CI[0.738,0.876] other 0.125
+    index_nok_H6_middle    n= 120 corr 0.000 CI[0.000,0.031] subst 0.508 CI[0.420,0.596] other 0.492
+    index_nok_H6_last      n= 120 corr 0.000 CI[0.000,0.031] subst 0.642 CI[0.553,0.722] other 0.358
+    index_nok_H24_first    n= 120 corr 0.175 CI[0.117,0.253] subst 0.683 CI[0.596,0.760] other 0.142
+    index_nok_H24_middle   n= 120 corr 0.000 CI[0.000,0.031] subst 0.667 CI[0.578,0.745] other 0.333
+    index_nok_H24_last     n= 120 corr 0.000 CI[0.000,0.031] subst 0.675 CI[0.587,0.752] other 0.325
+    pooled plain      corr 0.343 subst 0.449
+    pooled index      corr 0.671 subst 0.004
+    pooled index_nok  corr 0.039 subst 0.665
+    Q-A index-plain correct, mean over H at slot middle: +0.446
+    Q-A index-plain correct, mean over H at slot last: +0.512
+    Q-B stale-index substitution vs plain, mean: +0.217
+    Q-C index vs index_nok correct, mean: +0.632
+
+== rewritable-index cost (tab:index-cost): qwen3:14b temp 0.0, 460 paired turns x 20 sessions ==
+  prefix_stable  n= 460 prompt   453.0 cached   202.2 recompute   250.8 prefill   212.1 ms acc 1.000
+  index_I2       n= 460 prompt   480.7 cached   202.2 recompute   278.5 prefill   240.1 ms acc 1.000 | premium +27.7 tok CI[+27.1,+28.2] p=0
+  index_I8       n= 460 prompt   544.9 cached   202.3 recompute   342.6 prefill   278.2 ms acc 1.000 | premium +91.8 tok CI[+89.5,+93.9] p=0
+  index_I24      n= 460 prompt   649.8 cached   203.2 recompute   446.6 prefill   329.4 ms acc 1.000 | premium +195.7 tok CI[+190.3,+200.7] p=0
+  length_only    n= 460 prompt  1591.4 cached    24.6 recompute  1566.8 prefill  1039.7 ms acc 1.000
+  slope on I: intercept +21.14 slope +7.404 tok/row se 0.109 p=3.55e-24 (rows=1380, clusters=20)
+  index_I24 - length_only recompute -1120.2 tok CI[-1135.6,-1102.2]
+
+== external content-rule arm (tab:comp): qwen2.5:14b temp 0.0, 3864 calls, 552 cells, 24 sessions [prefix_comp_scored_qwen2.5_14b_t0.0.jsonl vs prefix_cost_scored_qwen2.5_14b_t0.0.jsonl] ==
+    comp_open50    n= 552 B   997.6 R   952.3 (med 963) hit  4.5% F 0.996 CI[0.987,0.999] gold@ctx 0.998 prefill 647.7 ms
+        vs length_only    B   -591.3[-603.6,-576.3]  R   -597.1[-609.3,-582.1]  F     +0.0[-0.0,+0.0]
+        vs prefix_stable  B   +538.1[+523.7,+549.6]  R   +711.6[+697.2,+723.2]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=0.18 (b=7, c=2)
+    comp_open25    n= 552 B   535.9 R   493.6 (med 497) hit  7.9% F 0.611 CI[0.569,0.650] gold@ctx 0.612 prefill 356.1 ms
+        vs length_only    B  -1053.1[-1073.9,-1026.4]  R  -1055.8[-1076.6,-1029.0]  F     -0.4[-0.4,-0.3]
+        vs prefix_stable  B    +76.4[+70.5,+82.0]  R   +252.9[+247.9,+257.6]  F     -0.4[-0.5,-0.3]
+        McNemar vs length_only p=1.24e-58 (b=3, c=211)
+    comp_open20    n= 552 B   444.2 R   402.3 (med 403) hit  9.4% F 0.071 CI[0.052,0.095] gold@ctx 0.071 prefill 324.2 ms
+        vs length_only    B  -1144.7[-1167.4,-1115.4]  R  -1147.1[-1169.7,-1117.8]  F     -0.9[-0.9,-0.9]
+        vs prefix_stable  B    -15.3[-21.2,-9.4]  R   +161.6[+157.5,+165.4]  F     -0.9[-0.9,-0.9]
+        McNemar vs length_only p=9.55e-153 (b=0, c=506)
+    comp_open12    n= 552 B   301.7 R   259.9 (med 261) hit 13.8% F 0.000 CI[0.000,0.007] gold@ctx 0.000 prefill 225.7 ms
+        vs length_only    B  -1287.3[-1312.1,-1255.0]  R  -1289.4[-1314.3,-1257.1]  F     -1.0[-1.0,-1.0]
+        vs prefix_stable  B   -157.8[-164.7,-150.7]  R    +19.2[+14.8,+24.2]  F     -1.0[-1.0,-1.0]
+        McNemar vs length_only p=1.74e-164 (b=0, c=545)
+    comp_keep25    n= 552 B   539.3 R   497.1 (med 500) hit  7.8% F 0.996 CI[0.987,0.999] gold@ctx 1.000 prefill 357.4 ms
+        vs length_only    B  -1049.6[-1070.4,-1022.8]  R  -1052.3[-1073.1,-1025.4]  F     +0.0[+0.0,+0.0]
+        vs prefix_stable  B    +79.8[+74.1,+85.4]  R   +256.4[+251.6,+261.0]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=0.125 (b=6, c=1)
+    comp_keep20    n= 552 B   452.6 R   410.6 (med 411) hit  9.3% F 0.996 CI[0.987,0.999] gold@ctx 1.000 prefill 328.6 ms
+        vs length_only    B  -1136.4[-1158.9,-1107.2]  R  -1138.7[-1161.3,-1109.4]  F     +0.0[-0.0,+0.0]
+        vs prefix_stable  B     -6.9[-12.7,-1.2]  R   +170.0[+165.8,+173.8]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=0.18 (b=7, c=2)
+    length_only    n= 552 B  1588.9 R  1549.4 (med 1564) hit  2.5% F 0.987 CI[0.974,0.994] gold@ctx 1.000 prefill 1058.9 ms
+    prefix_stable  n= 552 B   459.5 R   240.7 (med 240) hit 47.6% F 1.000 CI[0.993,1.000] gold@ctx 1.000 prefill 202.5 ms
+
+== external content-rule arm (tab:comp): qwen3:14b temp 0.0, 3864 calls, 552 cells, 24 sessions [prefix_comp_scored_qwen3_14b_t0.0.jsonl vs prefix_cost_scored_qwen3_14b_t0.0.jsonl] ==
+    comp_open50    n= 552 B   987.6 R   960.2 (med 971) hit  2.8% F 0.998 CI[0.990,1.000] gold@ctx 0.998 prefill 649.6 ms
+        vs length_only    B   -587.3[-599.6,-572.3]  R   -597.1[-609.3,-582.1]  F     -0.0[-0.0,+0.0]
+        vs prefix_stable  B   +542.1[+527.7,+553.6]  R   +711.6[+697.1,+723.2]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=1 (b=0, c=1)
+    comp_open25    n= 552 B   525.9 R   501.6 (med 505) hit  4.6% F 0.612 CI[0.571,0.652] gold@ctx 0.612 prefill 348.1 ms
+        vs length_only    B  -1049.1[-1069.9,-1022.4]  R  -1055.7[-1076.6,-1028.9]  F     -0.4[-0.5,-0.3]
+        vs prefix_stable  B    +80.4[+74.5,+86.0]  R   +252.9[+247.9,+257.6]  F     -0.4[-0.5,-0.3]
+        McNemar vs length_only p=7.6e-65 (b=0, c=214)
+    comp_open20    n= 552 B   434.2 R   410.4 (med 411) hit  5.5% F 0.071 CI[0.052,0.095] gold@ctx 0.071 prefill 310.7 ms
+        vs length_only    B  -1140.7[-1163.4,-1111.4]  R  -1146.9[-1169.7,-1117.6]  F     -0.9[-0.9,-0.9]
+        vs prefix_stable  B    -11.3[-17.2,-5.4]  R   +161.7[+157.5,+165.5]  F     -0.9[-0.9,-0.9]
+        McNemar vs length_only p=7.46e-155 (b=0, c=513)
+    comp_open12    n= 552 B   291.7 R   267.9 (med 269) hit  8.1% F 0.000 CI[0.000,0.007] gold@ctx 0.000 prefill 232.1 ms
+        vs length_only    B  -1283.3[-1308.1,-1251.0]  R  -1289.4[-1314.3,-1257.1]  F     -1.0[-1.0,-1.0]
+        vs prefix_stable  B   -153.8[-160.7,-146.7]  R    +19.2[+14.8,+24.2]  F     -1.0[-1.0,-1.0]
+        McNemar vs length_only p=1.36e-166 (b=0, c=552)
+    comp_keep25    n= 552 B   529.3 R   505.1 (med 508) hit  4.6% F 0.998 CI[0.990,1.000] gold@ctx 1.000 prefill 350.2 ms
+        vs length_only    B  -1045.6[-1066.4,-1018.8]  R  -1052.2[-1073.1,-1025.3]  F     -0.0[-0.0,+0.0]
+        vs prefix_stable  B    +83.8[+78.1,+89.4]  R   +256.4[+251.6,+261.0]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=1 (b=0, c=1)
+    comp_keep20    n= 552 B   442.6 R   418.7 (med 419) hit  5.4% F 0.998 CI[0.990,1.000] gold@ctx 1.000 prefill 314.1 ms
+        vs length_only    B  -1132.4[-1154.9,-1103.2]  R  -1138.6[-1161.2,-1109.3]  F     -0.0[-0.0,+0.0]
+        vs prefix_stable  B     -2.9[-8.7,+2.8]  R   +170.1[+165.9,+173.8]  F     -0.0[-0.0,+0.0]
+        McNemar vs length_only p=1 (b=0, c=1)
+    length_only    n= 552 B  1574.9 R  1557.3 (med 1572) hit  1.1% F 1.000 CI[0.993,1.000] gold@ctx 1.000 prefill 1055.5 ms
+    prefix_stable  n= 552 B   445.5 R   248.7 (med 248) hit 44.2% F 1.000 CI[0.993,1.000] gold@ctx 1.000 prefill 204.7 ms
+
+-> headline_numbers.json

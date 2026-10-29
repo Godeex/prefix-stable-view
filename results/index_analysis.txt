@@ -1,0 +1,177 @@
+run files: ['index_scored_llama3_latest.jsonl', 'index_scored_qwen3_14b.jsonl']
+
+### llama3:latest: 2160 calls, 120 sessions, arms ['index', 'index_nok', 'plain'], err-answers 0
+
+== llama3:latest: arm x head length x gold position (one competing near-twin binding in context in every cell) ==
+arm          H slot    gold@   idx  chars    tok    n               correct         mentions_gold          substitution  other
+plain        6 first        0    0   2034  493.6  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+plain        6 middle       3    0   2034  493.6  120   [0.992 0.954,0.999]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+plain        6 last         5    0   2034  493.6  120   [0.975 0.929,0.991]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+plain       24 first        0    0   5555 1191.3  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+plain       24 middle      12    0   5555 1191.3  120   [0.967 0.917,0.987]   [0.967 0.917,0.987]   [0.000 0.000,0.031]  0.033
+plain       24 last        23    0   5555 1191.3  120   [0.950 0.895,0.977]   [0.950 0.895,0.977]   [0.000 0.000,0.031]  0.050
+index        6 first        0    2   2104  515.3  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index        6 middle       3    2   2104  515.3  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index        6 last         5    2   2104  515.3  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index       24 first        0    2   5625 1213.0  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index       24 middle      12    2   5625 1213.0  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index       24 last        23    2   5625 1213.0  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index_nok    6 first        0    1   2089  511.0  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index_nok    6 middle       3    1   2089  511.0  120   [0.983 0.941,0.995]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+index_nok    6 last         5    1   2089  511.0  120   [0.983 0.941,0.995]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+index_nok   24 first        0    1   5610 1208.7  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index_nok   24 middle      12    1   5610 1208.7  120   [0.925 0.864,0.960]   [0.925 0.864,0.960]   [0.000 0.000,0.031]  0.075
+index_nok   24 last        23    1   5610 1208.7  120   [0.983 0.941,0.995]   [0.983 0.941,0.995]   [0.000 0.000,0.031]  0.017
+
+== within-arm position gradient (contrast on `correct`, paired within session) ==
+  plain      H=6   middle-first  RD -0.008 CI[-0.025,+0.000] b/c=0/1 p=1
+  plain      H=6   last-first    RD -0.025 CI[-0.058,+0.000] b/c=0/3 p=0.25
+  plain      H=24  middle-first  RD -0.033 CI[-0.067,-0.008] b/c=0/4 p=0.125
+  plain      H=24  last-first    RD -0.050 CI[-0.092,-0.017] b/c=0/6 p=0.0312  <-- gradient
+  index      H=6   middle-first  RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  index      H=6   last-first    RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  index      H=24  middle-first  RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  index      H=24  last-first    RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  index_nok  H=6   middle-first  RD -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5
+  index_nok  H=6   last-first    RD -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5
+  index_nok  H=24  middle-first  RD -0.075 CI[-0.125,-0.033] b/c=0/9 p=0.00391  <-- gradient
+  index_nok  H=24  last-first    RD -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5
+
+== arm contrast at matched content and matched gold position ==
+  H=6   first   index      vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   index_nok  vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   PLACEBO    index vs index_nok: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  H=6   middle  index      vs plain: correct RD +0.008 CI[+0.000,+0.025] b/c=1/0 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   middle  index_nok  vs plain: correct RD -0.008 CI[-0.042,+0.017] b/c=1/2 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   middle  PLACEBO    index vs index_nok: correct RD +0.017 CI[+0.000,+0.042] b/c=2/0 p=0.5
+  H=6   last    index      vs plain: correct RD +0.025 CI[+0.000,+0.058] b/c=3/0 p=0.25 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   last    index_nok  vs plain: correct RD +0.008 CI[-0.025,+0.042] b/c=3/2 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   last    PLACEBO    index vs index_nok: correct RD +0.017 CI[+0.000,+0.042] b/c=2/0 p=0.5
+  H=24  first   index      vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   index_nok  vs plain: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   PLACEBO    index vs index_nok: correct RD +0.000 CI[+0.000,+0.000] b/c=0/0 p=1
+  H=24  middle  index      vs plain: correct RD +0.033 CI[+0.008,+0.067] b/c=4/0 p=0.125 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  middle  index_nok  vs plain: correct RD -0.042 CI[-0.083,-0.008] b/c=0/5 p=0.0625 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  middle  PLACEBO    index vs index_nok: correct RD +0.075 CI[+0.033,+0.125] b/c=9/0 p=0.00391
+  H=24  last    index      vs plain: correct RD +0.050 CI[+0.017,+0.092] b/c=6/0 p=0.0312 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  last    index_nok  vs plain: correct RD +0.033 CI[+0.000,+0.075] b/c=5/1 p=0.219 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  last    PLACEBO    index vs index_nok: correct RD +0.017 CI[+0.000,+0.042] b/c=2/0 p=0.5
+
+  LPM correct ~ slot x arm (reference = plain@first@short, cluster-robust on 120 sessions):
+    const        RD +1.006 se 0.003 [+1.000,+1.012] p=2.61e-174
+    mid          RD -0.021 se 0.011 [-0.042,+0.001] p=0.059
+    last         RD -0.037 se 0.013 [-0.064,-0.011] p=0.00626  <-- clears SESOI
+    long         RD -0.012 se 0.007 [-0.025,+0.001] p=0.0691
+    idx          RD +0.000 se nan [+nan,+nan] p=nan
+    nok          RD +0.000 se nan [+nan,+nan] p=nan
+    mid_x_idx    RD +0.021 se 0.011 [-0.001,+0.042] p=0.059
+    last_x_idx   RD +0.037 se 0.013 [+0.011,+0.064] p=0.00626  <-- clears SESOI
+    mid_x_nok    RD -0.025 se 0.012 [-0.048,-0.002] p=0.0337
+    last_x_nok   RD +0.021 se 0.015 [-0.009,+0.050] p=0.167
+
+  LPM substitution ~ slot x arm (reference = plain@first@short, cluster-robust on 120 sessions):
+    const        RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last         RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    long         RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    idx          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    nok          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid_x_idx    RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last_x_idx   RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid_x_nok    RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last_x_nok   RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+
+== pre-declared reading ==
+  H=6   P1 gradient in plain: no (-0.008, p=1) | P2 gradient in index: GONE (+0.000) | P3 carried by the answer row: no (index-plain at middle +0.008) | placebo (index_nok) gradient -0.017
+  H=24  P1 gradient in plain: no (-0.033, p=0.125) | P2 gradient in index: GONE (+0.000) | P3 carried by the answer row: no (index-plain at middle +0.033) | placebo (index_nok) gradient -0.075
+
+### qwen3:14b: 2160 calls, 120 sessions, arms ['index', 'index_nok', 'plain'], err-answers 0
+
+== qwen3:14b: arm x head length x gold position (one competing near-twin binding in context in every cell) ==
+arm          H slot    gold@   idx  chars    tok    n               correct         mentions_gold          substitution  other
+plain        6 first        0    0   2034  529.3  120   [0.975 0.929,0.991]   [0.975 0.929,0.991]   [0.000 0.000,0.031]  0.025
+plain        6 middle       3    0   2034  529.3  120   [0.758 0.674,0.826]   [0.758 0.674,0.826]   [0.000 0.000,0.031]  0.242
+plain        6 last         5    0   2034  529.3  120   [0.725 0.639,0.797]   [0.725 0.639,0.797]   [0.000 0.000,0.031]  0.275
+plain       24 first        0    0   5555 1271.4  120   [0.975 0.929,0.991]   [0.975 0.929,0.991]   [0.000 0.000,0.031]  0.025
+plain       24 middle      12    0   5555 1271.4  120   [0.600 0.511,0.683]   [0.600 0.511,0.683]   [0.000 0.000,0.031]  0.400
+plain       24 last        23    0   5555 1271.4  120   [0.483 0.396,0.572]   [0.483 0.396,0.572]   [0.000 0.000,0.031]  0.517
+index        6 first        0    2   2104  554.8  120   [0.942 0.884,0.971]   [0.942 0.884,0.971]   [0.000 0.000,0.031]  0.058
+index        6 middle       3    2   2104  554.8  120   [0.892 0.823,0.936]   [0.892 0.823,0.936]   [0.000 0.000,0.031]  0.108
+index        6 last         5    2   2104  554.8  120   [0.975 0.929,0.991]   [0.975 0.929,0.991]   [0.000 0.000,0.031]  0.025
+index       24 first        0    2   5625 1297.0  120   [0.958 0.906,0.982]   [0.958 0.906,0.982]   [0.000 0.000,0.031]  0.042
+index       24 middle      12    2   5625 1297.0  120   [0.800 0.720,0.862]   [0.800 0.720,0.862]   [0.000 0.000,0.031]  0.200
+index       24 last        23    2   5625 1297.0  120   [1.000 0.969,1.000]   [1.000 0.969,1.000]   [0.000 0.000,0.031]  0.000
+index_nok    6 first        0    1   2089  548.5  120   [0.925 0.864,0.960]   [0.925 0.864,0.960]   [0.000 0.000,0.031]  0.075
+index_nok    6 middle       3    1   2089  548.5  120   [0.775 0.692,0.841]   [0.775 0.692,0.841]   [0.000 0.000,0.031]  0.225
+index_nok    6 last         5    1   2089  548.5  120   [0.742 0.657,0.812]   [0.742 0.657,0.812]   [0.000 0.000,0.031]  0.258
+index_nok   24 first        0    1   5610 1290.7  120   [0.958 0.906,0.982]   [0.958 0.906,0.982]   [0.000 0.000,0.031]  0.042
+index_nok   24 middle      12    1   5610 1290.7  120   [0.625 0.536,0.706]   [0.625 0.536,0.706]   [0.000 0.000,0.031]  0.375
+index_nok   24 last        23    1   5610 1290.7  120   [0.600 0.511,0.683]   [0.600 0.511,0.683]   [0.000 0.000,0.031]  0.400
+
+== within-arm position gradient (contrast on `correct`, paired within session) ==
+  plain      H=6   middle-first  RD -0.217 CI[-0.292,-0.142] b/c=1/27 p=2.16e-07  <-- gradient
+  plain      H=6   last-first    RD -0.250 CI[-0.333,-0.175] b/c=1/31 p=1.54e-08  <-- gradient
+  plain      H=24  middle-first  RD -0.375 CI[-0.467,-0.283] b/c=1/46 p=6.82e-13  <-- gradient
+  plain      H=24  last-first    RD -0.492 CI[-0.592,-0.400] b/c=1/60 p=5.38e-17  <-- gradient
+  index      H=6   middle-first  RD -0.050 CI[-0.117,+0.017] b/c=6/12 p=0.238
+  index      H=6   last-first    RD +0.033 CI[-0.017,+0.083] b/c=7/3 p=0.344
+  index      H=24  middle-first  RD -0.158 CI[-0.233,-0.083] b/c=2/21 p=6.6e-05  <-- gradient
+  index      H=24  last-first    RD +0.042 CI[+0.008,+0.083] b/c=5/0 p=0.0625
+  index_nok  H=6   middle-first  RD -0.150 CI[-0.225,-0.075] b/c=3/21 p=0.000277  <-- gradient
+  index_nok  H=6   last-first    RD -0.183 CI[-0.267,-0.100] b/c=4/26 p=5.95e-05  <-- gradient
+  index_nok  H=24  middle-first  RD -0.333 CI[-0.425,-0.242] b/c=3/43 p=4.62e-10  <-- gradient
+  index_nok  H=24  last-first    RD -0.358 CI[-0.450,-0.267] b/c=2/45 p=1.6e-11  <-- gradient
+
+== arm contrast at matched content and matched gold position ==
+  H=6   first   index      vs plain: correct RD -0.033 CI[-0.067,-0.008] b/c=0/4 p=0.125 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   index_nok  vs plain: correct RD -0.050 CI[-0.092,-0.017] b/c=0/6 p=0.0312 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   first   PLACEBO    index vs index_nok: correct RD +0.017 CI[-0.017,+0.058] b/c=4/2 p=0.688
+  H=6   middle  index      vs plain: correct RD +0.133 CI[+0.067,+0.208] b/c=18/2 p=0.000402 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   middle  index_nok  vs plain: correct RD +0.017 CI[-0.033,+0.067] b/c=6/4 p=0.754 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   middle  PLACEBO    index vs index_nok: correct RD +0.117 CI[+0.050,+0.183] b/c=16/2 p=0.00131
+  H=6   last    index      vs plain: correct RD +0.250 CI[+0.175,+0.325] b/c=30/0 p=1.86e-09 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   last    index_nok  vs plain: correct RD +0.017 CI[-0.033,+0.067] b/c=6/4 p=0.754 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=6   last    PLACEBO    index vs index_nok: correct RD +0.233 CI[+0.158,+0.308] b/c=28/0 p=7.45e-09
+  H=24  first   index      vs plain: correct RD -0.017 CI[-0.058,+0.025] b/c=2/4 p=0.688 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   index_nok  vs plain: correct RD -0.017 CI[-0.042,+0.000] b/c=0/2 p=0.5 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  first   PLACEBO    index vs index_nok: correct RD +0.000 CI[-0.033,+0.033] b/c=2/2 p=1
+  H=24  middle  index      vs plain: correct RD +0.200 CI[+0.125,+0.275] b/c=25/1 p=8.05e-07 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  middle  index_nok  vs plain: correct RD +0.025 CI[-0.025,+0.075] b/c=6/3 p=0.508 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  middle  PLACEBO    index vs index_nok: correct RD +0.175 CI[+0.108,+0.250] b/c=22/1 p=5.72e-06
+  H=24  last    index      vs plain: correct RD +0.517 CI[+0.425,+0.608] b/c=62/0 p=4.34e-19 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  last    index_nok  vs plain: correct RD +0.117 CI[+0.050,+0.183] b/c=17/3 p=0.00258 | subst +0.000 CI[+0.000,+0.000] p=1
+  H=24  last    PLACEBO    index vs index_nok: correct RD +0.400 CI[+0.317,+0.483] b/c=48/0 p=7.11e-15
+
+  LPM correct ~ slot x arm (reference = plain@first@short, cluster-robust on 120 sessions):
+    const        RD +1.014 se 0.016 [+0.982,+1.046] p=1.57e-92
+    mid          RD -0.296 se 0.037 [-0.368,-0.224] p=7.41e-13  <-- clears SESOI
+    last         RD -0.371 se 0.037 [-0.443,-0.299] p=1.2e-17  <-- clears SESOI
+    long         RD -0.079 se 0.018 [-0.114,-0.044] p=2.28e-05  <-- clears SESOI
+    idx          RD -0.025 se 0.014 [-0.053,+0.003] p=0.0839
+    nok          RD -0.033 se 0.013 [-0.059,-0.008] p=0.011  <-- clears SESOI
+    mid_x_idx    RD +0.192 se 0.031 [+0.131,+0.252] p=8.44e-09  <-- clears SESOI
+    last_x_idx   RD +0.408 se 0.039 [+0.331,+0.485] p=2.26e-18  <-- clears SESOI
+    mid_x_nok    RD +0.054 se 0.024 [+0.008,+0.100] p=0.0233  <-- clears SESOI
+    last_x_nok   RD +0.100 se 0.026 [+0.049,+0.151] p=0.000222  <-- clears SESOI
+
+  LPM substitution ~ slot x arm (reference = plain@first@short, cluster-robust on 120 sessions):
+    const        RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last         RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    long         RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    idx          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    nok          RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid_x_idx    RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last_x_idx   RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    mid_x_nok    RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+    last_x_nok   RD +0.000 se 0.000 [+0.000,+0.000] p=nan
+
+== pre-declared reading ==
+  H=6   P1 gradient in plain: YES (-0.217, p=2.16e-07) | P2 gradient in index: still present (-0.050) | P3 carried by the answer row: YES (index-plain at middle +0.133) | placebo (index_nok) gradient -0.150
+  H=24  P1 gradient in plain: YES (-0.375, p=6.82e-13) | P2 gradient in index: still present (-0.158) | P3 carried by the answer row: YES (index-plain at middle +0.200) | placebo (index_nok) gradient -0.333
+
+== difference-in-differences: [middle-first]_index - [middle-first]_plain ==
+  llama3:latest  H=6   DiD +0.008 CI[+0.000,+0.025] n=120 p=0.317 -> does not offset it; residual gradient in the index arm is reported as P2 above
+  llama3:latest  H=24  DiD +0.033 CI[+0.008,+0.067] n=120 p=0.0455 -> offsets the gradient; residual gradient in the index arm is reported as P2 above
+  qwen3:14b      H=6   DiD +0.167 CI[+0.092,+0.250] n=120 p=8.77e-05 -> offsets the gradient; residual gradient in the index arm is reported as P2 above
+  qwen3:14b      H=24  DiD +0.217 CI[+0.133,+0.300] n=120 p=4.3e-06 -> offsets the gradient; residual gradient in the index arm is reported as P2 above
