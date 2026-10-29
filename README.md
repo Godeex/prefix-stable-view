@@ -133,28 +133,6 @@ the designed cells, the issued calls and the exclusions, and it is regenerated f
 | **C6 · Position**             | gold 行在 head 内的**位置**本身就是保真轴：共享 key 压力下 front→back 正确率 $0.933\!\rightarrow\!0.008$（$H{=}24$，$\Delta-0.925$，$p{=}8{\times}10^{-34}$），llama3 同向；据此界定前缀稳定维持**能**把哪条信息放在哪儿                                                                                                                                                                                                                                                                   | `results/position_analysis.txt`, `results/sample_flow.md`                                                            |
 | **C7 · Index（mixed）**         | 第二张**可重写**视图 `INDEX`（`key→value` 活绑定）把 head 内位置梯度从 $-0.375$ 压到 $-0.158$（DiD $+0.217$，$p{=}4.3{\times}10^{-6}$），代价是每行 7.40 个重算 token（CI $[7.19,7.62]$）；预声明判读 **P2 失败**（残余梯度仍显著），如实报 mixed。**共享-key hazard 复现**：把同一 `INDEX` 重架到共享-key `STATE`（distractor 亦键 `TARGET`，stale 值同键竞争）时块恢复崩塌——index−plain 正确率 $+0.479/+0.662$（qwen3/llama3，各对照 $p\le3.1{\times}10^{-12}/\le1{\times}10^{-21}$），且 stale index 把替换率抬到 raw state 之上，故收益非 re-key 假象 | `results/index_analysis.txt`, `results/index_cost_analysis.txt`, `results/index_sk_analysis.txt`, `index_tables.tex` |
 
-> 诚实边界：成本三腿是 **llama.cpp / Ollama 进程内 radix 前缀缓存代理**上的方向性机制证据（单流 +
-> 共享池并发探针），**不是** vLLM/SGLang 式分页批处理的端到端 TTFT/吞吐头条。具体数字以 `results/*.md`
-> 为准；本 README 只在下方"预期结果"里给出已核对的成本三腿数字。
-> 
-> **脱敏 / Sanitisation（已完成）**：包内**不出现任何机器路径**——50 个脚本首行的 shebang 已是
-> `#!/usr/bin/env python`（所有脚本都以 `python x.py` 调用，本来就不依赖这一行），语料位置改由
-> `LB` / `DATA` / `MTU` 环境变量给出且**没有默认值**（未设置时脚本报错点名要设哪个变量，见
-> `ENVIRONMENT.md` §3），`results/*` 里也没有打印出的绝对路径。论文里的每一个统计量都不依赖这些
-> 位置：`results/*`、`index_tables.tex`、`index_form.tex` 全部可从包内 `.jsonl` 复算（见
-> Reproducibility 一节，已实测逐字节复现）。
-> 
-> The package carries **no machine path**: every shebang is `#!/usr/bin/env python` (the scripts are
-> invoked as `python x.py`, so that line was never load-bearing), the corpus locations come from
-> `LB` / `DATA` / `MTU` with **no default** — unset variables make a script name the variable it
-> needs — and the captures under `results/` print no absolute path. No reported statistic depends on
-> any of them: `results/*`, `index_tables.tex` and `index_form.tex` recompute from the shipped
-> `.jsonl` files (see Reproducibility, verified byte-for-byte).
-> 
-> Honest ceiling: the three cost legs are directional mechanism evidence on an in-process
-> llama.cpp/Ollama radix prefix-cache proxy (single stream + a shared-pool concurrency probe), **not**
-> a paged, continuously-batched vLLM/SGLang TTFT/throughput headline. Numbers in `results/*.md` are
-> authoritative; this README quotes only the verified cost legs under "Expected results".
 
 ---
 
