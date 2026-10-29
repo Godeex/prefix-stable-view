@@ -1,0 +1,1048 @@
+{
+ "Prefix cost (3 arms)": {
+  "rule": "turns WINDOW-1..NTURNS-1 (window full), set by the generator before any inference",
+  "sessions": 24,
+  "records_per_session": 30,
+  "generated": 720,
+  "arms": {
+   "length_only": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1850,
+    "prompt_sum": 869369,
+    "designed": 552,
+    "mean_prompt": 1575,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "prefix_stable": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 720,
+    "prompt_sum": 245903,
+    "designed": 552,
+    "mean_prompt": 445,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "pinned_raw": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1786,
+    "prompt_sum": 874521,
+    "designed": 552,
+    "mean_prompt": 1584,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Prefix cost, 2nd model": {
+  "rule": "same designed cells as the primary cost run",
+  "sessions": 24,
+  "records_per_session": 30,
+  "generated": 720,
+  "arms": {
+   "length_only": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1864,
+    "prompt_sum": 877097,
+    "designed": 552,
+    "mean_prompt": 1589,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "prefix_stable": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 734,
+    "prompt_sum": 253631,
+    "designed": 552,
+    "mean_prompt": 459,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "pinned_raw": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1800,
+    "prompt_sum": 882249,
+    "designed": 552,
+    "mean_prompt": 1598,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Joint 2x2 (4 configs)": {
+  "rule": "turns first-hazard-reveal..last (distractor in context), set before inference",
+  "sessions": 24,
+  "records_per_session": 20,
+  "generated": 480,
+  "arms": {
+   "c00": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1057,
+    "prompt_sum": 230803,
+    "designed": 408,
+    "mean_prompt": 566,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "c10": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1055,
+    "prompt_sum": 230533,
+    "designed": 408,
+    "mean_prompt": 565,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "c01": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1066,
+    "prompt_sum": 234091,
+    "designed": 408,
+    "mean_prompt": 574,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "c11": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1064,
+    "prompt_sum": 233821,
+    "designed": 408,
+    "mean_prompt": 573,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Joint 2x2 tail stress": {
+  "rule": "last 5 turns (both near-twins in the volatile tail), same rule for all four configs",
+  "sessions": 24,
+  "records_per_session": 20,
+  "generated": 480,
+  "arms": {
+   "c00": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 1078,
+    "prompt_sum": 100643,
+    "designed": 120,
+    "mean_prompt": 839,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c10": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 1076,
+    "prompt_sum": 100523,
+    "designed": 120,
+    "mean_prompt": 838,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c01": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 1087,
+    "prompt_sum": 101723,
+    "designed": 120,
+    "mean_prompt": 848,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c11": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 1085,
+    "prompt_sum": 101603,
+    "designed": 120,
+    "mean_prompt": 847,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Joint 2x2 tail stress, 2nd family": {
+  "rule": "same window as the qwen3 tail run; every row's model field verified llama3:latest",
+  "sessions": 24,
+  "records_per_session": 20,
+  "generated": 480,
+  "arms": {
+   "c00": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 987,
+    "prompt_sum": 94539,
+    "designed": 120,
+    "mean_prompt": 788,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c10": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 989,
+    "prompt_sum": 94731,
+    "designed": 120,
+    "mean_prompt": 789,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c01": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 996,
+    "prompt_sum": 95619,
+    "designed": 120,
+    "mean_prompt": 797,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   },
+   "c11": {
+    "cells": 120,
+    "err": 0,
+    "maxprompt": 998,
+    "prompt_sum": 95811,
+    "designed": 120,
+    "mean_prompt": 798,
+    "analysed": 120,
+    "turn_lo": 15,
+    "turn_hi": 19,
+    "turns_used": "15--19",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Layout 2x2 (4 cells)": {
+  "rule": "same hazard-window turns as the joint 2x2, identical rule for all four cells",
+  "sessions": 24,
+  "records_per_session": 20,
+  "generated": 480,
+  "arms": {
+   "s0l0": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1058,
+    "prompt_sum": 231211,
+    "designed": 408,
+    "mean_prompt": 567,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "s0l1": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1067,
+    "prompt_sum": 234499,
+    "designed": 408,
+    "mean_prompt": 575,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "s1l0": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1055,
+    "prompt_sum": 229891,
+    "designed": 408,
+    "mean_prompt": 563,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   },
+   "s1l1": {
+    "cells": 408,
+    "err": 0,
+    "maxprompt": 1067,
+    "prompt_sum": 234499,
+    "designed": 408,
+    "mean_prompt": 575,
+    "analysed": 408,
+    "turn_lo": 3,
+    "turn_hi": 19,
+    "turns_used": "3--19",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Bounded head (3 arms)": {
+  "rule": "turns WINDOW-1..NTURNS-1, identical rule for all three arms",
+  "sessions": 12,
+  "records_per_session": 40,
+  "generated": 480,
+  "arms": {
+   "length_only": {
+    "cells": 396,
+    "err": 0,
+    "maxprompt": 1810,
+    "prompt_sum": 629403,
+    "designed": 396,
+    "mean_prompt": 1589,
+    "analysed": 396,
+    "turn_lo": 7,
+    "turn_hi": 39,
+    "turns_used": "7--39",
+    "n_sess": 12
+   },
+   "prefix_stable": {
+    "cells": 396,
+    "err": 0,
+    "maxprompt": 744,
+    "prompt_sum": 197246,
+    "designed": 396,
+    "mean_prompt": 498,
+    "analysed": 396,
+    "turn_lo": 7,
+    "turn_hi": 39,
+    "turns_used": "7--39",
+    "n_sess": 12
+   },
+   "bounded_stable": {
+    "cells": 396,
+    "err": 0,
+    "maxprompt": 705,
+    "prompt_sum": 179840,
+    "designed": 396,
+    "mean_prompt": 454,
+    "analysed": 396,
+    "turn_lo": 7,
+    "turn_hi": 39,
+    "turns_used": "7--39",
+    "n_sess": 12
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Gold-position stress, qwen3 (3 slots)": {
+  "rule": "every designed slot (first/middle/last x H in {6,24}) issued once; the grid is 120 sessions x 6 cells = 720 trials, 240 per slot arm; the row's model field is verified qwen3:14b, no post-hoc exclusion",
+  "sessions": 120,
+  "records_per_session": 2,
+  "generated": 240,
+  "arms": {
+   "first": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1650,
+    "prompt_sum": 216085,
+    "designed": 240,
+    "mean_prompt": 900,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "middle": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1650,
+    "prompt_sum": 216085,
+    "designed": 240,
+    "mean_prompt": 900,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "last": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1650,
+    "prompt_sum": 216085,
+    "designed": 240,
+    "mean_prompt": 900,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Gold-position stress, llama3 (3 slots)": {
+  "rule": "same slots as the qwen3 position run, served a second time to llama3:latest (1,440 calls over both architectures); every row's model field verified llama3:latest",
+  "sessions": 120,
+  "records_per_session": 2,
+  "generated": 240,
+  "arms": {
+   "first": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1567,
+    "prompt_sum": 202193,
+    "designed": 240,
+    "mean_prompt": 842,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "middle": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1567,
+    "prompt_sum": 202193,
+    "designed": 240,
+    "mean_prompt": 842,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "last": {
+    "cells": 240,
+    "err": 0,
+    "maxprompt": 1567,
+    "prompt_sum": 202193,
+    "designed": 240,
+    "mean_prompt": 842,
+    "analysed": 240,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Rewritable-index fidelity, qwen3 (3 arms)": {
+  "rule": "every designed cell (H in {6,24} x first/middle/last) issued once per arm over the frozen gold-position session pool; the grid holds 3 arms x 720 cells = 2,160 trials and the row's own arm column splits them; the row's model field is verified qwen3:14b, no post-hoc exclusion",
+  "sessions": 120,
+  "records_per_session": 6,
+  "generated": 720,
+  "arms": {
+   "plain": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1650,
+    "prompt_sum": 648255,
+    "designed": 720,
+    "mean_prompt": 900,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1677,
+    "prompt_sum": 666663,
+    "designed": 720,
+    "mean_prompt": 926,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index_nok": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1670,
+    "prompt_sum": 662139,
+    "designed": 720,
+    "mean_prompt": 920,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Rewritable-index fidelity, llama3 (3 arms)": {
+  "rule": "same grid, cells and session pool as the qwen3 index run, served a second time to llama3:latest (4,320 calls over both architectures); every row's model field verified llama3:latest",
+  "sessions": 120,
+  "records_per_session": 6,
+  "generated": 720,
+  "arms": {
+   "plain": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1567,
+    "prompt_sum": 606579,
+    "designed": 720,
+    "mean_prompt": 842,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1590,
+    "prompt_sum": 622215,
+    "designed": 720,
+    "mean_prompt": 864,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index_nok": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1585,
+    "prompt_sum": 619077,
+    "designed": 720,
+    "mean_prompt": 860,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Rewritable-index cost (5 arms)": {
+  "rule": "turns 7--29 of the published cost sessions (window full), the identical pre-declared window as the primary three-arm cost run; byte-identical shared head asserted at generation",
+  "sessions": 20,
+  "records_per_session": 23,
+  "generated": 460,
+  "arms": {
+   "prefix_stable": {
+    "cells": 460,
+    "err": 0,
+    "maxprompt": 641,
+    "prompt_sum": 208373,
+    "designed": 460,
+    "mean_prompt": 453,
+    "analysed": 460,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 20
+   },
+   "index_I2": {
+    "cells": 460,
+    "err": 0,
+    "maxprompt": 671,
+    "prompt_sum": 221120,
+    "designed": 460,
+    "mean_prompt": 481,
+    "analysed": 460,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 20
+   },
+   "index_I8": {
+    "cells": 460,
+    "err": 0,
+    "maxprompt": 741,
+    "prompt_sum": 250637,
+    "designed": 460,
+    "mean_prompt": 545,
+    "analysed": 460,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 20
+   },
+   "index_I24": {
+    "cells": 460,
+    "err": 0,
+    "maxprompt": 922,
+    "prompt_sum": 298911,
+    "designed": 460,
+    "mean_prompt": 650,
+    "analysed": 460,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 20
+   },
+   "length_only": {
+    "cells": 460,
+    "err": 0,
+    "maxprompt": 1764,
+    "prompt_sum": 732061,
+    "designed": 460,
+    "mean_prompt": 1591,
+    "analysed": 460,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 20
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Token-compressor competitor (7 arms)": {
+  "rule": "turns 7--29 of the published cost sessions (window full), the identical pre-declared window as the primary three-arm cost run; every compressed prompt asserted at generation to be a whitespace-token subsequence of the same trial's naive window, with the probe tail byte-identical. Roster: naive-window control + 4 open keep-rates (.50/.25/.20/.12) + 2 gold-protected rates (.25/.20); the .20 pair is the budget-matched arm added mid-leg under AMENDMENT 2, served under the leg's original nonce so its prompts are the gated bytes",
+  "sessions": 24,
+  "records_per_session": 23,
+  "generated": 552,
+  "arms": {
+   "comp_open50": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1196,
+    "prompt_sum": 545154,
+    "designed": 552,
+    "mean_prompt": 988,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open25": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 732,
+    "prompt_sum": 290282,
+    "designed": 552,
+    "mean_prompt": 526,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open12": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 371,
+    "prompt_sum": 161002,
+    "designed": 552,
+    "mean_prompt": 292,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_keep25": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 741,
+    "prompt_sum": 292173,
+    "designed": 552,
+    "mean_prompt": 529,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "length_only": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1860,
+    "prompt_sum": 874889,
+    "designed": 552,
+    "mean_prompt": 1585,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open20": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 598,
+    "prompt_sum": 239688,
+    "designed": 552,
+    "mean_prompt": 434,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_keep20": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 607,
+    "prompt_sum": 244288,
+    "designed": 552,
+    "mean_prompt": 443,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Token-compressor competitor, 2nd model": {
+  "rule": "same sessions, turns, arm roster and nonce discipline as the primary competitor leg, served to the second published cost architecture",
+  "sessions": 24,
+  "records_per_session": 23,
+  "generated": 552,
+  "arms": {
+   "comp_open50": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1206,
+    "prompt_sum": 550674,
+    "designed": 552,
+    "mean_prompt": 998,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open25": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 742,
+    "prompt_sum": 295802,
+    "designed": 552,
+    "mean_prompt": 536,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open20": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 608,
+    "prompt_sum": 245208,
+    "designed": 552,
+    "mean_prompt": 444,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_open12": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 381,
+    "prompt_sum": 166522,
+    "designed": 552,
+    "mean_prompt": 302,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_keep25": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 751,
+    "prompt_sum": 297693,
+    "designed": 552,
+    "mean_prompt": 539,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "comp_keep20": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 617,
+    "prompt_sum": 249808,
+    "designed": 552,
+    "mean_prompt": 453,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   },
+   "length_only": {
+    "cells": 552,
+    "err": 0,
+    "maxprompt": 1870,
+    "prompt_sum": 880409,
+    "designed": 552,
+    "mean_prompt": 1595,
+    "analysed": 552,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 24
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Shared-key index fidelity, qwen3 (2 arms)": {
+  "rule": "every designed cell (H in {6,24} x first/middle/last) issued once per arm over the frozen gold-position session pool, with the distractor re-keyed to TARGET so a stale value competes under one key (the C7 shared-key hazard served back on top of the published STATE); the grid holds 2 arms (index fresh, index_nok stale) x 720 cells = 1,440 trials and the row's own arm column splits them; the row's model field is verified qwen3:14b, no post-hoc exclusion",
+  "sessions": 120,
+  "records_per_session": 6,
+  "generated": 720,
+  "arms": {
+   "index": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1675,
+    "prompt_sum": 665739,
+    "designed": 720,
+    "mean_prompt": 925,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index_nok": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1677,
+    "prompt_sum": 667179,
+    "designed": 720,
+    "mean_prompt": 927,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Shared-key index fidelity, llama3 (2 arms)": {
+  "rule": "same grid, cells, shared-key hazard and session pool as the qwen3 shared-key index run, served a second time to llama3:latest (2,880 calls over both architectures); every row's model field verified llama3:latest",
+  "sessions": 120,
+  "records_per_session": 6,
+  "generated": 720,
+  "arms": {
+   "index": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1587,
+    "prompt_sum": 620517,
+    "designed": 720,
+    "mean_prompt": 862,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   },
+   "index_nok": {
+    "cells": 720,
+    "err": 0,
+    "maxprompt": 1589,
+    "prompt_sum": 621957,
+    "designed": 720,
+    "mean_prompt": 864,
+    "analysed": 720,
+    "turn_lo": 0,
+    "turn_hi": 0,
+    "turns_used": "single-turn",
+    "n_sess": 120
+   }
+  },
+  "num_ctx": 8192
+ },
+ "Repeat-variance diagnostic (2 arms)": {
+  "rule": "DIAGNOSTIC, not a confirmatory study: turns 7--29 of sessions S0/S5 of the primary cost run, re-fired three times per arm with a fresh nonce each repeat; generated cells 2 sessions x (23 turns x 3 repeats), all issued, none excluded",
+  "sessions": 2,
+  "records_per_session": 69,
+  "generated": 138,
+  "arms": {
+   "length_only": {
+    "cells": 138,
+    "err": 0,
+    "maxprompt": 1732,
+    "prompt_sum": 221970,
+    "designed": 138,
+    "mean_prompt": 1608,
+    "analysed": 138,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 2
+   },
+   "prefix_stable": {
+    "cells": 138,
+    "err": 0,
+    "maxprompt": 614,
+    "prompt_sum": 59775,
+    "designed": 138,
+    "mean_prompt": 433,
+    "analysed": 138,
+    "turn_lo": 7,
+    "turn_hi": 29,
+    "turns_used": "7--29",
+    "n_sess": 2
+   }
+  },
+  "num_ctx": 8192
+ },
+ "_danger_audit": {
+  "74": {
+   "files": 6,
+   "calls": 888,
+   "pairs60": 282,
+   "pairs55": 444
+  },
+  "300": {
+   "files": 6,
+   "calls": 3600,
+   "pairs60": 282,
+   "pairs55": 444
+  },
+  "44": {
+   "files": 2,
+   "calls": 176,
+   "pairs60": 88,
+   "pairs55": 88
+  },
+  "total_calls": 4664,
+  "primary_slice_calls": 1304,
+  "outside_slice_calls": 3360
+ },
+ "_global": {
+  "files": [
+   "danger_scored_qwen2.5_14b_t0.0_s1234.jsonl",
+   "danger_scored_qwen3_14b_t0.0_s1234.jsonl",
+   "danger_scored_qwen3_8b_t0.0_s1234.jsonl",
+   "danger_scored_qwen3_8b_t0.7_s1234.jsonl",
+   "index_cost_scored_qwen3_14b_t0.0.jsonl",
+   "index_scored_llama3_latest.jsonl",
+   "index_scored_qwen3_14b.jsonl",
+   "index_sk_scored_llama3_latest.jsonl",
+   "index_sk_scored_qwen3_14b.jsonl",
+   "joint_layout_scored_qwen3_14b.jsonl",
+   "joint_scored_llama3_latest_tailf.jsonl",
+   "joint_scored_qwen3_14b.jsonl",
+   "joint_scored_qwen3_14b_tail.jsonl",
+   "joint_scored_qwen3_14b_tailf.jsonl",
+   "joint_scored_qwen3_14b_tailf_epoch2.jsonl",
+   "lb_danger_scored_gemma2_2b_t0.0_s1234.jsonl",
+   "lb_danger_scored_gemma2_2b_t0.6_s777.jsonl",
+   "lb_danger_scored_llama3_latest_t0.0_s1234.jsonl",
+   "lb_danger_scored_llama3_latest_t0.6_s777.jsonl",
+   "lb_danger_scored_mistral_latest_t0.0_s1234.jsonl",
+   "lb_danger_scored_mistral_latest_t0.6_s777.jsonl",
+   "lb_danger_scored_qwen2.5_14b_t0.0_s1234.jsonl",
+   "lb_danger_scored_qwen2.5_14b_t0.6_s777.jsonl",
+   "lb_danger_scored_qwen3.8_27b_t0.0_s1234.jsonl",
+   "lb_danger_scored_qwen3.8_27b_t0.5_s1234.jsonl",
+   "lb_danger_scored_qwen3_14b_t0.0_s1234.jsonl",
+   "lb_danger_scored_qwen3_14b_t0.6_s777.jsonl",
+   "lb_danger_scored_qwen3_8b_t0.0_s1234.jsonl",
+   "lb_danger_scored_qwen3_8b_t0.7_s1234.jsonl",
+   "ms_repeat_variance_scored.jsonl",
+   "policy_scored_qwen3_8b.jsonl",
+   "position_scored_llama3_latest.jsonl",
+   "position_scored_qwen3_14b.jsonl",
+   "prefix_bounded_scored_qwen3_14b_t0.0.jsonl",
+   "prefix_comp_scored_qwen2.5_14b_t0.0.jsonl",
+   "prefix_comp_scored_qwen3_14b_t0.0.jsonl",
+   "prefix_concurrency_scored_qwen3_14b_t0.0_p8.jsonl",
+   "prefix_cost_scored_qwen2.5_14b_t0.0.jsonl",
+   "prefix_cost_scored_qwen3_14b_t0.0.jsonl"
+  ],
+  "calls": 34410,
+  "confirmatory_calls": 34134,
+  "confirmatory_files": 38,
+  "diagnostic_calls": 276,
+  "diagnostic_files": 1,
+  "diagnostic_files_named": [
+   "ms_repeat_variance_scored.jsonl"
+  ],
+  "index_fidelity_calls": 4320,
+  "index_fidelity_files": 2,
+  "index_cost_calls": 2300,
+  "index_cost_files": 1,
+  "position_calls": 1440,
+  "position_files": 2,
+  "competitor_calls": 7728,
+  "competitor_files": 2,
+  "index_sk_fidelity_calls": 2880,
+  "index_sk_fidelity_files": 2,
+  "max_prompt": 1870,
+  "max_prompt_file": "prefix_comp_scored_qwen2.5_14b_t0.0.jsonl",
+  "num_ctx": 8192
+ }
+}
