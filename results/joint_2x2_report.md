@@ -142,22 +142,12 @@ is a **substitute** for prefix-stability, not a complement. There is no joint > 
    value itself, nor multi-hop aggregation across turns — different failure modes, out of scope here.
 
 
-## Implication for the project (user decision, not ours)
 
-The prefix-cost mechanism and the naive-truncation fragility (c00 collapse: 39% substitution, 12%
-correct) stand as **positive results supporting I-01's framing** (history as a prefix-stability-
-constrained streaming view; the cost leg). But **I-03 as a distinct "joint > decoupled" contribution is
-not supported by its own kill experiment.** The tail-distractor rework below was the authorized second
-chance for I-03; it failed to revive the joint claim. What remains to decide (user's call): drop I-03 to a
-secondary/ablation finding, or carry only I-01 forward.
 
 ---
 
-# DECISION (2026-09-24, user): A — I-03 archived as negative result, carry I-01 only
+# DECISION: archived as negative result
 
-User elected option **A**: treat "prefix-stability already absorbs the admission benefit in the fidelity
-regime" as the conclusion, archive **I-03** as a negative/ablation result, and carry only **I-01**
-forward. The bounded-eviction reframe (option B) was **knowingly not run**.
 
 ## Known limitations this hands to I-01 (must appear in the paper's scope/limitations)
 
